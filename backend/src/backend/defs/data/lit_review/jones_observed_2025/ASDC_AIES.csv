@@ -1,0 +1,108 @@
+Title of paper,Article DOI (or URL),Journal name,Year of publication,Is there an ASDC?,Justification for non-open data?,All data available,At least some data available,All code available,At least some code available,All data available upon request,At least some data available upon request,no data produced,links work
+Photographic Visualization of Weather Forecasts with Generative Adversarial Networks,https://doi.org/10.1175/AIES-D-22-0028.1,AIES,2023,yes,Licensing/Proprietary,n,y,y,y,,n,,y
+A Hybrid Physics–AI Model to Improve Hydrological Forecasts,https://doi.org/10.1175/AIES-D-22-0023.1,AIES,2023,yes,Dataset too large,n,y,n,n,,n,,y
+Deep Learning–Based Parameter Transfer in Meteorological Data,https://doi.org/10.1175/AIES-D-22-0024.1,AIES,2023,yes,Can be obtained from other entities,n,y,y,y,,n,,y
+Can a Machine Learning–Enabled Numerical Model Help Extend Effective Forecast Range through Consistently Trained Subgrid-Scale Models?,https://doi.org/10.1175/AIES-D-22-0050.1,AIES,2023,yes,None,n,n,y,y,n,n,,y
+A Primer on Topological Data Analysis to Support Image Analysis Tasks in Environmental Science,https://doi.org/10.1175/AIES-D-22-0039.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Emulating Rainfall–Runoff-Inundation Model Using Deep Neural Network with Dimensionality Reduction,https://doi.org/10.1175/AIES-D-22-0036.1,AIES,2023,yes,Dataset too large,n,n,n,n,y,y,,
+Strictly Enforcing Invertibility and Conservation in CNN-Based Super Resolution for Scientific Datasets,https://doi.org/10.1175/AIES-D-21-0012.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Physics-Informed Deep Neural Network for Backward-in-Time Prediction: Application to Rayleigh–Bénard Convection,https://doi.org/10.1175/AIES-D-22-0076.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Global Extreme Heat Forecasting Using Neural Weather Models,https://doi.org/10.1175/AIES-D-22-0035.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Emulating the Adaptation of Wind Fields to Complex Terrain with Deep Learning,https://doi.org/10.1175/AIES-D-22-0034.1,AIES,2023,yes,None,n,y,y,y,,n,,y
+A Real-Time Spatiotemporal Machine Learning Framework for the Prediction of Nearshore Wave Conditions,https://doi.org/10.1175/AIES-D-22-0033.1,AIES,2023,yes,None,y,y,n,n,,,,
+Carefully Choose the Baseline: Lessons Learned from Applying XAI Attribution Methods for Regression Tasks in Geoscience,https://doi.org/10.1175/AIES-D-22-0058.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Convective-Scale Assimilation of Cloud Cover from Photographs Using a Machine Learning Forward Operator,https://doi.org/10.1175/AIES-D-22-0025.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Creating and Evaluating Uncertainty Estimates with Neural Networks for Environmental-Science Applications,https://doi.org/10.1175/AIES-D-22-0061.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Detail Enhancement of AIRS/AMSU Temperature and Moisture Profiles Using a 3D Deep Neural Network,https://doi.org/10.1175/AIES-D-22-0037.1,AIES,2023,yes,Dataset too large,n,y,n,n,,n,,y
+Subseasonal Prediction of Central European Summer Heatwaves with Linear and Random Forest Machine Learning Models,https://doi.org/10.1175/AIES-D-22-0038.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Efficient Probabilistic Prediction and Uncertainty Quantification of Tropical Cyclone–Driven Storm Tides and Inundation,https://doi.org/10.1175/AIES-D-22-0040.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Subseasonal Representation and Predictability of North American Weather Regimes Using Cluster Analysis,https://doi.org/10.1175/AIES-D-22-0051.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Application of Machine Learning Techniques to Improve Multi-Radar Multi-Sensor (MRMS) Precipitation Estimates in the Western United States,https://doi.org/10.1175/AIES-D-22-0053.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Bias Correcting Climate Model Simulations Using Unpaired Image-to-Image Translation Networks,https://doi.org/10.1175/AIES-D-22-0031.1,AIES,2023,yes,N/A,y,y,y,y,,,,n
+Reducing Southern Ocean Shortwave Radiation Errors in the ERA5 Reanalysis with Machine Learning and 25 Years of Surface Observations,https://doi.org/10.1175/AIES-D-22-0044.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Let’s Unleash the Network Judgment: A Self-Supervised Approach for Cloud Image Analysis,https://doi.org/10.1175/AIES-D-22-0063.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Using Machine Learning to Understand Relocation Drivers of Urban Coastal Populations in Response to Flooding,https://doi.org/10.1175/AIES-D-22-0054.1,AIES,2023,yes,Sensitive information,n,n,n,n,n,n,,
+Simulation of Atlantic Hurricane Tracks and Features: A Coupled Machine Learning Approach,https://doi.org/10.1175/AIES-D-22-0060.1,AIES,2023,yes,None,n,n,n,n,y,y,,
+Using Neural Networks to Learn the Jet Stream Forced Response from Natural Variability,https://doi.org/10.1175/AIES-D-22-0094.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+GRRIEn Analysis: A Data Science Cheat Sheet for Earth Scientists Learning from Global Earth Observations,https://doi.org/10.1175/AIES-D-22-0065.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Improving Seasonal Prediction of Summer Precipitation in the Middle–Lower Reaches of the Yangtze River Using a TU-Net Deep Learning Approach,https://doi.org/10.1175/AIES-D-22-0078.1,AIES,2023,yes,N/A,y,y,n,n,,,,n
+A Review of Machine Learning for Convective Weather,https://doi.org/10.1175/AIES-D-22-0077.1,AIES,2023,yes,N/A,,,,,,,y,
+TCDetect: A New Method of Detecting the Presence of Tropical Cyclones Using Deep Learning,https://doi.org/10.1175/AIES-D-22-0045.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Toward Operational Real-Time Identification of Frontal Boundaries Using Machine Learning,https://doi.org/10.1175/AIES-D-22-0052.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+A Deep Learning–Based Velocity Dealiasing Algorithm Derived from the WSR-88D Open Radar Product Generator,https://doi.org/10.1175/AIES-D-22-0084.1,AIES,2023,yes,Can be obtained from other entities,n,y,n,n,,n,,y
+Correcting Subseasonal Forecast Errors with an Explainable ANN to Understand Misrepresented Sources of Predictability of European Summer Temperatures,https://doi.org/10.1175/AIES-D-22-0047.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+O3ResNet: A Deep Learning–Based Forecast System to Predict Local Ground-Level Daily Maximum 8-Hour Average Ozone in Rural and Suburban Environments,https://doi.org/10.1175/AIES-D-22-0085.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Skillful U.S. Soy Yield Forecasts at Presowing Lead Times,https://doi.org/10.1175/AIES-D-21-0009.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Automatic Detection of Rainfall at Hourly Time Scales from Mooring Near-Surface Salinity in the Eastern Tropical Pacific,https://doi.org/10.1175/AIES-D-22-0009.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Atmospheric Pattern–Based Predictions of S2S Sea Level Anomalies for Two Selected U.S. Locations,https://doi.org/10.1175/AIES-D-22-0057.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Surrogate Downscaling of Mesoscale Wind Fields Using Ensemble Superresolution Convolutional Neural Networks,https://doi.org/10.1175/AIES-D-23-0007.1,AIES,2023,yes,Licensing/Proprietary,n,y,n,n,,n,,y
+Understanding Spatial Context in Convolutional Neural Networks Using Explainable Methods: Application to Interpretable GREMLIN,https://doi.org/10.1175/AIES-D-22-0093.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+A New Approach to Predict Tributary Phosphorus Loads Using Machine Learning– and Physics-Based Modeling Systems,https://doi.org/10.1175/AIES-D-22-0049.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Probabilistic Forecasting Methods of Winter Mixed-Precipitation Events in New York State Utilizing a Random Forest,https://doi.org/10.1175/AIES-D-22-0080.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Machine Learning–Based Cloud Forecast Corrections for Fusions of Numerical Weather Prediction Model and Satellite Data,https://doi.org/10.1175/AIES-D-22-0072.1,AIES,2023,yes,Sensitive information,n,y,n,n,,n,,y
+Environment-Aware Digital Twins: Incorporating Weather and Climate Information to Support Risk-Based Decision-Making,https://doi.org/10.1175/AIES-D-23-0023.1,AIES,2023,yes,N/A,,,,,,,y,
+Perspectives on Artificial Intelligence for Predictions in Ecohydrology,https://doi.org/10.1175/AIES-D-23-0005.1,AIES,2023,yes,N/A,,,,,,,y,
+A Review of Recent and Emerging Machine Learning Applications for Climate Variability and Weather Phenomena,https://doi.org/10.1175/AIES-D-22-0086.1,AIES,2023,yes,N/A,,,,,,,y,
+ARMing the Edge: Designing Edge Computing–Capable Machine Learning Algorithms to Target ARM Doppler Lidar Processing,https://doi.org/10.1175/AIES-D-22-0062.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Deriving Severe Hail Likelihood from Satellite Observations and Model Reanalysis Parameters Using a Deep Neural Network,https://doi.org/10.1175/AIES-D-22-0042.1,AIES,2023,yes,N/A,y,y,n,y,,,,n
+Assessing Tropical Pacific–Induced Predictability of Southern California Precipitation Using a Novel Multi-Input Multioutput Autoencoder,https://doi.org/10.1175/AIES-D-23-0003.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+A Deep Learning Filter for the Intraseasonal Variability of the Tropics,https://doi.org/10.1175/AIES-D-22-0079.1,AIES,2023,yes,N/A,y,y,y,y,,,,n
+Cross-Validation Strategy Impacts the Performance and Interpretation of Machine Learning Models,https://doi.org/10.1175/AIES-D-23-0026.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Machine Learning for Daily Forecasts of Arctic Sea Ice Motion: An Attribution Assessment of Model Predictive Skill,https://doi.org/10.1175/AIES-D-23-0004.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Exploring Randomly Wired Neural Networks for Climate Model Emulation,https://doi.org/10.1175/AIES-D-22-0088.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Multivariate Emulation of Kilometer-Scale Numerical Weather Predictions with Generative Adversarial Networks: A Proof of Concep,https://doi.org/10.1175/AIES-D-23-0006.1,AIES,2023,yes,Available at later date,n,n,y,y,n,n,,y
+Can Machine Learning Models Be a Suitable Tool for Predicting Central European Cold Winter Weather on Subseasonal to Seasonal Time Scales?,https://doi.org/10.1175/AIES-D-23-0020.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Short-Term (7 Day) Beaufort Sea Ice Extent Forecasting with Deep Learning,https://doi.org/10.1175/AIES-D-22-0070.1,AIES,2023,yes,N/A,y,y,n,n,,,,n
+Uncertainty Calibration of Passive Microwave Brightness Temperatures Predicted by Bayesian Deep Learning Models,https://doi.org/10.1175/AIES-D-22-0056.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Statistical Modeling of Monthly and Seasonal Michigan Snowfall Based on Machine Learning: A Multiscale Approach,https://doi.org/10.1175/AIES-D-23-0016.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Improving Precipitation Nowcasting for High-Intensity Events Using Deep Generative Models with Balanced Loss and Temperature Data: A Case Study in the Netherlands,https://doi.org/10.1175/AIES-D-23-0017.1,AIES,2023,yes,N/A,y,y,n,n,,,,y
+Understanding Cloud Systems’ Structure and Organization Using a Machine’s Self-Learning Approach,https://doi.org/10.1175/AIES-D-22-0096.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Insights into the Drivers and Spatiotemporal Trends of Extreme Mediterranean Wildfires with Statistical Deep Learning,https://doi.org/10.1175/AIES-D-22-0095.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+"The Development and Initial Capabilities of ThunderCast, a Deep Learning Model for Thunderstorm Nowcasting in the United States",https://doi.org/10.1175/AIES-D-23-0044.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Machine Learning for Nonorographic Gravity Waves in a Climate Model,https://doi.org/10.1175/AIES-D-22-0081.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Algorithmic Hallucinations of Near-Surface Winds: Statistical Downscaling with Generative Adversarial Networks to Convection-Permitting Scales,https://doi.org/10.1175/AIES-D-23-0015.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Physics-Constrained Deep Learning Postprocessing of Temperature and Humidity,https://doi.org/10.1175/AIES-D-22-0089.1,AIES,2023,yes,N/A,y,y,y,y,,,,y
+Current Training and Validation Weaknesses in Classification-Based Radiation Fog Nowcast Using Machine Learning Algorithms,https://doi.org/10.1175/AIES-D-21-0006.1,AIES,2022,yes,Available at later date,n,y,n,n,,n,,y
+Detection of Bow Echoes in Kilometer-Scale Forecasts Using a Convolutional Neural Network,https://doi.org/10.1175/AIES-D-21-0010.1,AIES,2022,yes,N/A,y,y,y,y,,,,y
+Accurate and Clear Quantitative Precipitation Nowcasting Based on a Deep Learning Model with Consecutive Attention and Rain-Map Discrimination,https://doi.org/10.1175/AIES-D-21-0005.1,AIES,2022,yes,Can be obtained from other entities,n,n,y,y,,,,y
+Global Mesoscale Ocean Variability from Multiyear Altimetry: An Analysis of the Influencing Factors,https://doi.org/10.1175/AIES-D-21-0008.1,AIES,2022,yes,None,n,y,n,n,,n,,n
+This Looks Like That There: Interpretable Neural Networks for Image Tasks When Location Matters,https://doi.org/10.1175/AIES-D-22-0001.1,AIES,2022,yes,N/A,y,y,y,y,,,,y
+"Challenges and Benchmark Datasets for Machine Learning in the Atmospheric Sciences: Definition, Status, and Outlook",https://doi.org/10.1175/AIES-D-21-0002.1,AIES,2022,yes,N/A,,,,,,,y,
+Automated Identification of Characteristic Droplet Size Distributions in Stratocumulus Clouds Utilizing a Data Clustering Algorithm,https://doi.org/10.1175/AIES-D-22-0003.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+Archetypal Analysis of Geophysical Data Illustrated by Sea Surface Temperature,https://doi.org/10.1175/AIES-D-21-0007.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+Probing the Explainability of Neural Network Cloud-Top Pressure Models for LEO and GEO Imagers,https://doi.org/10.1175/AIES-D-21-0001.1,AIES,2022,yes,N/A,y,y,n,n,,,,n
+Adaptive Blending of Probabilistic Precipitation Forecasts with Emphasis on Calibration and Temporal Forecast Consistency,https://doi.org/10.1175/AIES-D-22-0020.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+Investigating the Fidelity of Explainable Artificial Intelligence Methods for Applications of Convolutional Neural Networks in Geoscience,https://doi.org/10.1175/AIES-D-22-0012.1,AIES,2022,yes,N/A,y,y,y,y,,,,y
+Machine Learning Crop Yield Models Based on Meteorological Features and Comparison with a Process-Based Model,https://doi.org/10.1175/AIES-D-22-0002.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+Automated Identification of “Dunkelflaute” Events: A Convolutional Neural Network–Based Autoencoder Approach,https://doi.org/10.1175/AIES-D-22-0015.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+The Pairwise Similarity Partitioning Algorithm: A Method for Unsupervised Partitioning of Geoscientific and Other Datasets Using Arbitrary Similarity Metrics,https://doi.org/10.1175/AIES-D-22-0005.1,AIES,2022,yes,N/A,y,y,y,y,,,,y
+Application of Deep Learning to Understanding ENSO Dynamics,https://doi.org/10.1175/AIES-D-21-0011.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+Hybrid Neural Network Models for Postprocessing Medium-Range Forecasts of Tropical Cyclone Tracks over the Western North Pacific,https://doi.org/10.1175/AIES-D-21-0003.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+Seamless Lightning Nowcasting with Recurrent-Convolutional Deep Learning,https://doi.org/10.1175/AIES-D-22-0043.1,AIES,2022,yes,None,,,,,,,y,
+Improvements to the Land Surface Air Temperature Reconstruction in NOAAGlobalTemp: An Artificial Neural Network Approach,https://doi.org/10.1175/AIES-D-22-0032.1,AIES,2022,yes,N/A,y,y,n,n,,,,n
+Can We Integrate Spatial Verification Methods into Neural Network Loss Functions for Atmospheric Science?,https://doi.org/10.1175/AIES-D-22-0021.1,AIES,2022,yes,None,n,n,y,y,y,y,,y
+Downscaling of Historical Wind Fields over Switzerland Using Generative Adversarial Networks,https://doi.org/10.1175/AIES-D-22-0018.1,AIES,2022,yes,Can be obtained from other entities,n,y,n,n,,n,,y
+Modeling Spatial Distribution of Snow Water Equivalent by Combining Meteorological and Satellite Data with Lidar Maps,https://doi.org/10.1175/AIES-D-22-0010.1,AIES,2022,yes,N/A,y,y,n,n,,,,y
+Understanding Predictability of Daily Southeast U.S. Precipitation Using Explainable Machine Learning,https://doi.org/10.1175/AIES-D-22-0011.1,AIES,2022,yes,N/A,y,y,y,y,,,,y
+On Variability due to Local Minima and K-Fold Cross Validation,https://doi.org/10.1175/AIES-D-21-0004.1,AIES,2022,yes,None,n,n,n,n,y,y,,
+Perspectives on AI Architectures and Codesign for Earth System Predictability,https://doi.org/10.1175/AIES-D-23-0029.1,AIES,2024,yes,N/A,,,,,,,y,
+Exploring the Use of Machine Learning to Improve Vertical Profiles of Temperature and Moisture,https://doi.org/10.1175/AIES-D-22-0090.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Deep Learning Parameterization of Vertical Wind Velocity Variability via Constrained Adversarial Training,https://doi.org/10.1175/AIES-D-23-0025.1,AIES,2024,yes,N/A,y,y,n,n,,,,n
+Physics-Inspired Adaptions to Low-Parameter Neural Network Weather Forecast Systems,https://doi.org/10.1175/AIES-D-23-0046.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Deep Learning Image Segmentation for Atmospheric Rivers,https://doi.org/10.1175/AIES-D-23-0048.1,AIES,2024,yes,N/A,y,y,n,y,,,,y
+A Machine Learning Explainability Tutorial for Atmospheric Sciences,https://doi.org/10.1175/AIES-D-23-0018.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Statistical Treatment of Convolutional Neural Network Superresolution of Inland Surface Wind for Subgrid-Scale Variability Quantification,https://doi.org/10.1175/AIES-D-23-0009.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Self-Supervised Cloud Classification,https://doi.org/10.1175/AIES-D-23-0036.1,AIES,2024,yes,Can be obtained from other entities,n,y,y,y,,n,,y
+Improving Medium-Range Ensemble Weather Forecasts with Hierarchical Ensemble Transformers,https://doi.org/10.1175/AIES-D-23-0027.1,AIES,2024,yes,Available at later date,n,n,y,y,,,,y
+Postprocessing of Ensemble Weather Forecasts Using Permutation-Invariant Neural Networks,https://doi.org/10.1175/AIES-D-23-0070.1,AIES,2024,yes,Licensing/Proprietary,n,y,y,y,,n,,y
+Airborne Radar Quality Control with Machine Learning,https://doi.org/10.1175/AIES-D-23-0064.1,AIES,2024,yes,N/A,y,y,n,n,,,,y
+Automated Large-Scale Tornado Treefall Detection and Directional Analysis Using Machine Learning,https://doi.org/10.1175/AIES-D-23-0062.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Development of an Optimal Postprocessing Model Using the Microgenetic Algorithm to Improve Precipitation Forecasting in South Korea,https://doi.org/10.1175/AIES-D-23-0069.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Two-Step Hyperparameter Optimization Method: Accelerating Hyperparameter Search by Using a Fraction of a Training Dataset,https://doi.org/10.1175/AIES-D-23-0013.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Limitations of XAI Methods for Process-Level Understanding in the Atmospheric Sciences,https://doi.org/10.1175/AIES-D-23-0045.1,AIES,2024,yes,N/A,y,y,y,y,,,,n
+Environmental Justice and Lessons Learned from COVID-19 Outcomes—Uncovering Hidden Patterns with Geometric Deep Learning and New NASA Satellite Data,https://doi.org/10.1175/AIES-D-23-0040.1,AIES,2024,yes,N/A,y,y,n,n,,,,y
+Enhancing Regional Climate Downscaling through Advances in Machine Learning,https://doi.org/10.1175/AIES-D-23-0066.1,AIES,2024,yes,N/A,,,,,,,y,
+Machine Learning Estimation of Maximum Vertical Velocity from Radar,https://doi.org/10.1175/AIES-D-23-0095.1,AIES,2024,yes,Dataset too large,n,y,y,y,,n,,y
+Efficient Data-Driven Gap Filling of Satellite Image Time Series Using Deep Neural Networks with Partial Convolutions,https://doi.org/10.1175/AIES-D-22-0055.1,AIES,2024,yes,N/A,y,y,y,y,,,,y
+Superresolution of GOES-16 ABI Bands to a Common High Resolution with a Convolutional Neural Network,https://doi.org/10.1175/AIES-D-23-0065.1,AIES,2024,yes,N/A,y,y,n,n,,,,y
+Investigating Differences between Tropical Cyclone Detection Systems,https://doi.org/10.1175/AIES-D-22-0046.1,AIES,2024,yes,N/A,y,y,y,y,,,,y

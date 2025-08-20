@@ -1,0 +1,56 @@
+Title of paper,Article DOI (or URL),Journal name,Year of publication,Is there an ASDC?,Justification for non-open data?,All data available,At least some data available,All code available,At least some code available,All data available upon request,At least some data available upon request,no data produced,links work
+Non-deterministic approximation fixpoint theory and its application in disjunctive logic programming,https://www.sciencedirect.com/science/article/pii/S0004370224000468,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Hyperbolic Secant representation of the logistic function: Application to probabilistic Multiple Instance Learning for CT intracranial hemorrhage detection,https://www.sciencedirect.com/science/article/pii/S0004370224000511,Artificial Intelligence,2024,yes,N/A,y,y,y,y,,,,n
+A differentiable first-order rule learner for inductive logic programming☆,https://www.sciencedirect.com/science/article/abs/pii/S0004370224000444,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Knowledge-driven profile dynamics,https://www.sciencedirect.com/science/article/pii/S0004370224000535,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Generalized planning as heuristic search: A new planning search-space that leverages pointers over objects,https://www.sciencedirect.com/science/article/pii/S000437022400033X,Artificial Intelligence,2024,yes,None,n,n,y,y,,,,y
+Crossover can guarantee exponential speed-ups in evolutionary multi-objective optimisation,https://www.sciencedirect.com/science/article/pii/S0004370224000341,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Investigating the properties of neural network representations in reinforcement learning,https://www.sciencedirect.com/science/article/pii/S0004370224000365,Artificial Intelligence,2024,yes,None,n,n,n,n,y,y,,
+aspmc: New frontiers of algebraic answer set counting,https://www.sciencedirect.com/science/article/pii/S0004370224000456,Artificial Intelligence,2024,yes,N/A,y,y,y,y,,,,n
+Transferable dynamics models for efficient object-oriented reinforcement learning,https://www.sciencedirect.com/science/article/pii/S0004370224000158,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Counterexamples and amendments to the termination and optimality of ADOPT-based algorithms,https://www.sciencedirect.com/science/article/pii/S0004370224000195,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+The distortion of distributed facility location,https://www.sciencedirect.com/science/article/pii/S000437022400002X#kws0010,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Self-adjusting offspring population sizes outperform fixed parameters on the cliff function,https://www.sciencedirect.com/science/article/pii/S0004370223002072,Artificial Intelligence,2023,yes,None,n,n,n,n,y,y,,
+An attention model for the formation of collectives in real-world domains,https://www.sciencedirect.com/science/article/pii/S0004370223002102,Artificial Intelligence,2023,yes,None,n,n,n,n,y,y,,
+From statistical relational to neurosymbolic artificial intelligence: A survey,https://www.sciencedirect.com/science/article/pii/S0004370223002084,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Enhancing SMT-based Weighted Model Integration by structure awareness,https://www.sciencedirect.com/science/article/pii/S0004370224000031,Artificial Intelligence,2024,yes,N/A,y,y,y,y,,,,y
+Is this a violation? Learning and understanding norm violations in online communities,https://www.sciencedirect.com/science/article/pii/S0004370223002047,Artificial Intelligence,2023,yes,N/A,y,y,y,y,,,,y
+"Fragility, robustness and antifragility in deep learning",https://www.sciencedirect.com/science/article/pii/S0004370223002060,Artificial Intelligence,2023,yes,N/A,y,y,y,y,,,,y
+Gerrymandering individual fairness,https://www.sciencedirect.com/science/article/pii/S0004370223001819,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Dual forgetting operators in the context of weakest sufficient and strongest necessary conditions,https://www.sciencedirect.com/science/article/pii/S0004370223001820,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Syntactic ASP forgetting with forks,https://www.sciencedirect.com/science/article/pii/S0004370223001790,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Extending the description logic  with threshold concepts induced by concept measures,https://www.sciencedirect.com/science/article/pii/S0004370223001807,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Sound and relatively complete belief Hoare logic for statistical hypothesis testing programs,https://www.sciencedirect.com/science/article/pii/S0004370223001911,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Mathematical runtime analysis for the non-dominated sorting genetic algorithm II (NSGA-II),https://www.sciencedirect.com/science/article/pii/S0004370223001625,Artificial Intelligence,2023,yes,None,n,n,n,n,y,y,,
+Computing optimal hypertree decompositions with SAT,https://www.sciencedirect.com/science/article/pii/S0004370223001613,Artificial Intelligence,2023,yes,N/A,y,y,y,y,,,,y
+Balanced Q-learning: Combining the influence of optimistic and pessimistic targets,https://www.sciencedirect.com/science/article/pii/S0004370223001674,Artificial Intelligence,2023,yes,None,n,n,y,y,,,,n
+DEED: DEep Evidential Doctor,https://www.sciencedirect.com/science/article/pii/S0004370223001650,Artificial Intelligence,2023,yes,None,y,y,y,y,,,,y
+Risk-aware shielding of Partially Observable Monte Carlo Planning policies,https://www.sciencedirect.com/science/article/pii/S0004370223001339,Artificial Intelligence,2023,yes,None,n,n,n,n,y,y,,
+A Bayesian approach to (online) transfer learning: Theory and algorithms,https://www.sciencedirect.com/science/article/pii/S0004370223001376,Artificial Intelligence,2023,yes,None,n,n,n,n,y,y,,
+"Maintenance commitments: Conception, semantics, and coherence",https://www.sciencedirect.com/science/article/pii/S000437022300139X,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Counterfactual explanations for misclassified images: How human and machine explanations differ,https://www.sciencedirect.com/science/article/pii/S0004370223001418,Artificial Intelligence,2023,yes,N/A,y,y,y,y,,,,y
+"A claim-centric perspective on abstract argumentation semantics: Claim-defeat, principles, and expressiveness",https://www.sciencedirect.com/science/article/pii/S0004370223001571,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+"Counterfactuals as modal conditionals, and their probability",https://www.sciencedirect.com/science/article/pii/S0004370223001169,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Explainable acceptance in probabilistic and incomplete abstract argumentation frameworks,https://www.sciencedirect.com/science/article/pii/S0004370223001133,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Fast and accurate data-driven goal recognition using process mining techniques,https://www.sciencedirect.com/science/article/pii/S0004370223001194,Artificial Intelligence,2023,yes,N/A,y,y,y,y,,,,y
+The notion of Abstraction in Ontology-based Data Management,https://www.sciencedirect.com/science/article/pii/S0004370223001224,Artificial Intelligence,2023,yes,N/A,,,,,,,y,
+Manipulation and peer mechanisms: A survey,https://www.sciencedirect.com/science/article/pii/S0004370224001322,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+QCDCL with cube learning or pure literal elimination – What is best?,https://www.sciencedirect.com/science/article/pii/S0004370224001309,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Modular control architecture for safe marine navigation: Reinforcement learning with predictive safety filters,https://www.sciencedirect.com/science/article/pii/S0004370224001371,Artificial Intelligence,2024,yes,None,n,n,n,n,y,y,,
+NovPhy: A physical reasoning benchmark for open-world AI systems,https://www.sciencedirect.com/science/article/pii/S0004370224001346,Artificial Intelligence,2024,yes,None,n,n,y,y,,,,y
+On generalized notions of consistency and reinstatement and their preservation in formal argumentation,https://www.sciencedirect.com/science/article/pii/S0004370224001383,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Addressing maximization bias in reinforcement learning with two-sample testing,https://www.sciencedirect.com/science/article/pii/S0004370224001401,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Abstract argumentation frameworks with strong and weak constraints,https://www.sciencedirect.com/science/article/pii/S0004370224001413,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Assessing fidelity in XAI post-hoc techniques: A comparative study with ground truth explanations datasets,https://www.sciencedirect.com/science/article/pii/S0004370224001152,Artificial Intelligence,2024,yes,None,n,n,n,n,n,n,,
+An abstract and structured account of dialectical argument strength,https://www.sciencedirect.com/science/article/pii/S0004370224001292,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+On measuring inconsistency in graph databases with regular path constraints,https://www.sciencedirect.com/science/article/pii/S0004370224001334,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Stability based on single-agent deviations in additively separable hedonic games,https://www.sciencedirect.com/science/article/pii/S0004370224000961,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Functional Relation Field: A Model-Agnostic Framework for Multivariate Time Series Forecasting,https://www.sciencedirect.com/science/article/pii/S0004370224000948,Artificial Intelligence,2024,yes,None,n,n,n,n,y,y,,
+Delegated online search,https://www.sciencedirect.com/science/article/pii/S0004370224001073,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Controlled query evaluation in description logics through consistent query answering,https://www.sciencedirect.com/science/article/pii/S0004370224001127,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Hyper-heuristics for personnel scheduling domains,https://www.sciencedirect.com/science/article/pii/S0004370224001085,Artificial Intelligence,2024,yes,N/A,y,y,y,y,,,,y
+Boosting optimal symbolic planning: Operator-potential heuristics,https://www.sciencedirect.com/science/article/pii/S0004370224001103,Artificial Intelligence,2024,yes,N/A,y,y,y,y,,,,y
+Joint learning of reward machines and policies in environments with partially known semantics,https://www.sciencedirect.com/science/article/pii/S0004370224000821,Artificial Intelligence,2024,yes,None,n,n,n,n,y,y,,
+Optimizing pathfinding for goal legibility and recognition in cooperative partially observable environments,https://www.sciencedirect.com/science/article/pii/S0004370224000845,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+"Discrete preference games with logic-based agents: Formal framework, complexity, and islands of tractability",https://www.sciencedirect.com/science/article/pii/S0004370224000675,Artificial Intelligence,2024,yes,N/A,,,,,,,y,
+Iterative voting with partial preferences,https://www.sciencedirect.com/science/article/pii/S0004370224000699,Artificial Intelligence,2024,yes,N/A,y,y,y,y,,,,y

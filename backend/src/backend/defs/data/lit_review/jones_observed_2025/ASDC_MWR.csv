@@ -1,0 +1,56 @@
+Title of paper,Article DOI (or URL),Journal name,Year of publication,Is there an ASDC?,Justification for non-open data?,All data available,At least some data available,All code available,At least some code available,All data available upon request,At least some data available upon request,no data produced,links work
+"Impact of Data Resolution on Tracking Southern Ocean Cyclones
+",https://doi.org/10.1175/MWR-D-22-0121.1,Monthly Weather Review,2023,yes,N/A,y,y,y,y,,,,y
+Supercell-External Storms and Boundaries Acting as Catalysts for Tornadogenesis,https://doi.org/10.1175/MWR-D-22-0026.1,Monthly Weather Review,2023,yes,None,n,n,n,n,n,n,,y
+Diagnosing Near-Surface Model Errors with Candidate Physics Parameterization Schemes for the Multiphysics Rapid Refresh Forecast System (RRFS) Ensemble during Winter over the Northeastern United States and Southern Great Plains,https://doi.org/10.1175/MWR-D-22-0085.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+The Mean Kinematic Structure of the Tropical Cyclone Boundary Layer and Its Relationship to Intensity Change,https://doi.org/10.1175/MWR-D-21-0335.1,Monthly Weather Review,2023,yes,N/A,n,n,n,n,y,y,,y
+New Parameterizations of Turbulence Statistics for the Atmospheric Surface Layer,https://doi.org/10.1175/MWR-D-22-0071.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,
+A Statistical Hypothesis Testing Strategy for Adaptively Blending Particle Filters and Ensemble Kalman Filters for Data Assimilation,https://doi.org/10.1175/MWR-D-22-0108.1,Monthly Weather Review,2023,yes,None,n,n,n,n,n,n,,n
+Global Observing System Experiments within the Météo-France 4D-Var Data Assimilation System,https://doi.org/10.1175/MWR-D-22-0087.1,Monthly Weather Review,2023,yes,Dataset too large,n,n,n,n,y,y,,
+Orographic Controls over Convection in an Inter-Andean Valley in Northern South America,https://doi.org/10.1175/MWR-D-21-0231.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Impacts of Observation Forward Operator on Infrared Radiance Data Assimilation with Fine Model Resolutions,https://doi.org/10.1175/MWR-D-22-0084.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Factors Influencing the Track of Hurricane Dorian (2019) in the West Atlantic: Analysis of a HAFS Ensemble,https://doi.org/10.1175/MWR-D-22-0112.1,Monthly Weather Review,2023,yes,N/A,n,n,n,n,y,y,,
+The Ensemble Tangent Linear Model Applied to Nonorographic Gravity Wave Drag,https://doi.org/10.1175/MWR-D-22-0164.1,Monthly Weather Review,2023,yes,N/A,y,y,y,y,,,,y
+Impacts of Northeastern Pacific Buoy Surface Pressure Observations,https://doi.org/10.1175/MWR-D-22-0124.1,Monthly Weather Review,2023,yes,Sensitive information,n,y,n,n,,n,,y
+On the Rapid Weakening of Typhoon Trami (2018): Strong Sea Surface Temperature Cooling Associated with Slow Translation Speed,https://doi.org/10.1175/MWR-D-22-0039.1,Monthly Weather Review,2023,yes,None,y,y,y,y,,,,n
+Stationary and Transient Asymmetric Features in Tropical Cyclone Eye with Wavenumber-1 Instability: Case Study for Typhoon Haishen (2020) with Atmospheric Motion Vectors from 30-Second Imaging,https://doi.org/10.1175/MWR-D-22-0179.1,Monthly Weather Review,2023,yes,Licensing/Proprietary,y,y,n,n,,,,y
+Statistical Downscaling to Improve the Subseasonal Predictions of Energy-Relevant Surface Variables,https://doi.org/10.1175/MWR-D-22-0170.1,Monthly Weather Review,2023,yes,None,n,n,n,n,n,n,,y
+A Tale of Two Vortex Evolutions: Using a High-Resolution Ensemble to Assess the Impacts of Ventilation on a Tropical Cyclone Rapid Intensification Event,https://doi.org/10.1175/MWR-D-22-0037.1,Monthly Weather Review,2023,yes,Dataset too large,n,y,n,n,,n,,y
+Evolution of Convective Energy and Inhibition before Instances of Large CAPE,https://doi.org/10.1175/MWR-D-21-0302.1,Monthly Weather Review,2023,yes,None,y,y,n,n,,,,y
+Impact of Radar Reflectivity Data Assimilation Frequency on Convection-Allowing Forecasts of Diverse Cases over the Continental United States,https://doi.org/10.1175/MWR-D-22-0095.1,Monthly Weather Review,2023,yes,None,n,y,n,n,,y,,y
+On Synergy between Convective Equatorial Signals and Monsoon Intraseasonal Oscillations in the Bay of Bengal,https://doi.org/10.1175/MWR-D-22-0076.1,Monthly Weather Review,2023,yes,Can be obtained from other entities,n,n,n,n,y,y,,y
+A Microphysics-Scheme-Consistent Snow Optical Parameterization for the Community Radiative Transfer Model,https://doi.org/10.1175/MWR-D-22-0145.1,Monthly Weather Review,2023,yes,N/A,n,y,y,y,,n,,n
+A Deep Learning Model for Estimating Tropical Cyclone Wind Radius from Geostationary Satellite Infrared Imagery,https://doi.org/10.1175/MWR-D-22-0166.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Types of Severe Convective Wind Events in Eastern Australia,https://doi.org/10.1175/MWR-D-22-0096.1,Monthly Weather Review,2023,yes,None,n,y,n,n,,n,,y
+The Impact of Constrained Data Assimilation on the Forecasts of Three Convection Systems during the ARM MC3E Field Campaign,https://doi.org/10.1175/MWR-D-22-0144.11,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Climatology of Significant Tornadoes within China and Comparison of Tornado Environments between the United States and China,https://doi.org/10.1175/MWR-D-22-0070.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Assimilation of New York State Mesonet Surface and Profiler Data for the 21 June 2021 Convective Event,https://doi.org/10.1175/MWR-D-22-0136.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Toward a Quantitative Understanding of Robert’s Rising Thermal Bubble as a Benchmark for 3D Atmospheric Codes,https://doi.org/10.1175/MWR-D-22-0081.1,Monthly Weather Review,2023,yes,None,n,n,y,y,y,y,,
+A Case Study of a West Sumatra Squall Line Using Satellite Observations,https://doi.org/10.1175/MWR-D-21-0194.1,Monthly Weather Review,2023,no,N/A,,,,,,,,
+An Improved Instability–Shear Hail Proxy for Australia,https://doi.org/10.1175/MWR-D-22-0127.1,Monthly Weather Review,2023,yes,None,n,y,n,y,,n,,n
+Strong Relationship between Eye Radius and Radius of Maximum Wind of Tropical Cyclones,https://doi.org/10.1175/MWR-D-22-0106.1,Monthly Weather Review,2023,yes,None,n,y,n,n,,n,,n
+Environmental and Storm-Scale Controls on Close Proximity Supercells Observed by TORUS on 8 June 2019,https://doi.org/10.1175/MWR-D-23-0002.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+The Impact of Surface Drag on the Structure and Evolution of Surface Boundaries Associated with Tornadogenesis in Simulated Supercells,https://doi.org/10.1175/MWR-D-23-0050.1,Monthly Weather Review,2023,yes,Dataset too large,n,n,y,y,n,n,,y
+Measurements and Model Improvement: Insight into NWP Model Error Using Doppler Lidar and Other WFIP2 Measurement Systems,https://doi.org/10.1175/MWR-D-23-0069.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Investigating the Development and Characteristics of Streamwise Vorticity Currents Produced by Outflow Surges in Simulated Supercell Thunderstorms,https://doi.org/10.1175/MWR-D-22-0309.1,Monthly Weather Review,2023,yes,None,n,n,y,y,n,n,,y
+Role of Midlatitude Baroclinic Condition in Heavy Rainfall Events Directly Induced by Tropical Cyclones in South Korea,https://doi.org/10.1175/MWR-D-23-0046.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Semi-Implicit Computation of Fast Modes in a Scheme Integrating Slow Modes by a Leapfrog Method Based on a Selective Implicit Time Filter,https://doi.org/10.1175/MWR-D-22-0311.1,Monthly Weather Review,2023,yes,None,n,n,n,n,n,y,,
+Precursory Analysis Ensemble Spread Signals That Foreshadow Stratospheric Sudden Warmings,https://doi.org/10.1175/MWR-D-22-0169.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+Comparing Synoptic Conditions and Environmental Characteristics for Fronts with and without Prefrontal Convection Initiation and Heavy Rain over Coastal South China,https://doi.org/10.1175/MWR-D-23-0054.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+CFL Optimized Forward–Backward Runge–Kutta Schemes for the Shallow-Water Equations,https://doi.org/10.1175/MWR-D-23-0113.1,Monthly Weather Review,2023,yes,N/A,y,y,y,y,,,,y
+Reexamining the Estimation of Tropical Cyclone Radius of Maximum Wind from Outer Size with an Extensive Synthetic Aperture Radar Dataset,https://doi.org/10.1175/MWR-D-23-0119.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+ENSO and MJO Modulation of U.S. Cloud-to-Ground Lightning Activity,https://doi.org/10.1175/MWR-D-23-0157.1,Monthly Weather Review,2023,yes,None,n,y,n,n,,n,,n
+The Influence of Convection Initiation Strength on Subsequent Simulated Supercell Evolution,https://doi.org/10.1175/MWR-D-22-0069.1,Monthly Weather Review,2023,yes,None,n,n,n,n,y,y,,
+Supercell Low-Level Mesocyclones: Origins of Inflow and Vorticity,https://doi.org/10.1175/MWR-D-22-0269.1,Monthly Weather Review,2023,yes,None,n,n,y,y,y,y,,y
+Exploring the Value of a High-Precision Targeted Observation Strategy for Mobile Radiosonde Deployment,https://doi.org/10.1175/MWR-D-22-0352.1,Monthly Weather Review,2023,yes,None,y,y,n,n,,,,
+Information-Based Probabilistic Verification Scores for Two-Dimensional Ensemble Forecast Data: A Madden–Julian Oscillation Index Example,https://doi.org/10.1175/MWR-D-23-0003.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,
+"Development and Investigation of GridRad-Severe, a Multiyear Severe Event Radar Dataset",https://doi.org/10.1175/MWR-D-23-0017.1,Monthly Weather Review,2023,yes,None,n,y,n,n,,n,,n
+Improving the Representation of Hail in the Thompson Microphysics Scheme,https://doi.org/10.1175/MWR-D-21-0319.1,Monthly Weather Review,2023,yes,None,n,n,n,n,n,n,,
+"Sensitivities of Subseasonal Unified Forecast System Simulations to Changes in Parameterizations of Convection, Cloud Microphysics, and Planetary Boundary Layer",https://doi.org/10.1175/MWR-D-22-0338.1,Monthly Weather Review,2023,yes,None,n,n,n,n,y,y,,
+Challenges for Inline Observation Error Estimation in the Presence of Misspecified Background Uncertainty,https://doi.org/10.1175/MWR-D-22-0298.1,Monthly Weather Review,2023,yes,None,n,n,y,y,y,y,,
+Assessment of Five Wind-Farm Parameterizations in the Weather Research and Forecasting Model: A Case Study of Wind Farms in the North Sea,https://doi.org/10.1175/MWR-D-23-0006.1,Monthly Weather Review,2023,yes,N/A,y,y,y,y,,,,y
+A Three-Dimensional Hail Trajectory Clustering Technique,https://doi.org/10.1175/MWR-D-22-0345.1,Monthly Weather Review,2023,yes,None,n,n,y,y,y,y,,y
+Indirect and Direct Impacts of Typhoon In-Fa (2021) on Heavy Precipitation in Inland and Coastal Areas of China: Synoptic-Scale Environments and Return Period Analysis,https://doi.org/10.1175/MWR-D-22-0241.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+On the Detection of Icing Conditions at Altitude in Conjunction with Mesoscale Convective Complexes Using Balloon Sondes,https://doi.org/10.1175/MWR-D-23-0062.1,Monthly Weather Review,2023,yes,N/A,y,y,n,n,,,,y
+How Sampling Errors in Covariance Estimates Cause Bias in the Kalman Gain and Impact Ensemble Data Assimilation,https://doi.org/10.1175/MWR-D-23-0029.1,Monthly Weather Review,2023,yes,None,n,n,y,y,n,n,,y
+Identifying Important Microphysical Properties and Processes for Marine Fog Forecasts,https://doi.org/10.1175/MWR-D-22-0294.1,Monthly Weather Review,2023,yes,Dataset too large,n,y,n,n,,n,,n

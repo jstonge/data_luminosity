@@ -1,0 +1,73 @@
+Title of paper,Article DOI (or URL),Journal name,Year of publication,Is there an ASDC?,Justification for non-open data?,All data available,At least some data available,All code available,At least some code available,All data available upon request,At least some data available upon request,no data produced,links work
+Seismic swarm intelligence inversion with sparse probability distribution of reflectivity,https://doi.org/10.1016/j.aiig.2023.02.001,AI in Geo,2023,no,None,,,,,,,,
+Deriving big geochemical data from high-resolution remote sensing data via machine learning: Application to a tailing storage facility in the Witwatersrand goldfields,https://doi.org/10.1016/j.aiig.2023.01.005,AI in Geo,2023,yes,Licensing/Proprietary,n,n,n,n,n,n,,
+Unsupervised pre-stack seismic facies analysis constrained by spatial continuity,https://doi.org/10.1016/j.aiig.2023.01.003,AI in Geo,2023,no,None,,,,,,,,
+Research on microseismic denoising method based on CBDNet,https://doi.org/10.1016/j.aiig.2023.02.002,AI in Geo,2023,no,None,,,,,,,,
+Toward earthquake early warning: A convolutional neural network for rapid earthquake magnitude estimation,https://doi.org/10.1016/j.aiig.2023.03.001,AI in Geo,2023,yes,N/A,y,y,y,y,,,,n
+Models of plate tectonics with the Lattice Boltzmann Method,https://doi.org/10.1016/j.aiig.2023.03.002,AI in Geo,2023,yes,N/A,,,,,,,y,
+Machine learning elucidates the anatomy of buried carbonate reef from seismic reflection data,https://doi.org/10.1016/j.aiig.2023.04.001,AI in Geo,2023,yes,N/A,y,y,n,n,,,,y
+Developing soft-computing regression model for predicting bearing capacity of eccentrically loaded footings on anisotropic clay,https://doi.org/10.1016/j.aiig.2023.05.001,AI in Geo,2023,yes,None,n,n,n,n,y,y,,
+Improving patch-based simulation using Generative Adversial Networks,https://doi.org/10.1016/j.aiig.2023.05.002,AI in Geo,2023,no,None,,,,,,,,
+Blockly earthquake transformer: A deep learning platform for custom phase picking,https://doi.org/10.1016/j.aiig.2023.05.003,AI in Geo,2023,yes,Can be obtained from other entities,n,y,n,n,,n,,y
+Optimization of shale gas fracturing parameters based on artificial intelligence algorithm,https://doi.org/10.1016/j.aiig.2023.08.001,AI in Geo,2023,no,None,,,,,,,,
+"Determination of future land use changes using remote sensing imagery and artificial neural network algorithm: A case study of Davao City, Philippines",https://doi.org/10.1016/j.aiig.2023.08.002,AI in Geo,2023,no,None,,,,,,,,
+2D magnetotelluric inversion based on ResNet,https://doi.org/10.1016/j.aiig.2023.08.003,AI in Geo,2023,no,None,,,,,,,,
+Automated stratigraphic correlation of well logs using Attention Based Dense Network,https://doi.org/10.1016/j.aiig.2023.09.001,AI in Geo,2023,no,None,,,,,,,,
+Big geochemical data through remote sensing for dynamic mineral resource monitoring in tailing storage facilities,https://doi.org/10.1016/j.aiig.2023.09.002,AI in Geo,2023,no,None,,,,,,,,
+Enhanced crustal and intermediate seismicity in the Hindu Kush-Pamir region revealed by attentive deep learning model,https://doi.org/10.1016/j.aiig.2023.10.002,AI in Geo,2023,yes,N/A,y,y,n,n,,,,y
+Uncertainty and explainable analysis of machine learning model for reconstruction of sonic slowness logs,https://doi.org/10.1016/j.aiig.2023.11.002,AI in Geo,2023,no,None,,,,,,,,
+Estimating relative diffusion from 3D micro-CT images using CNNs,https://doi.org/10.1016/j.aiig.2023.11.001,AI in Geo,2023,yes,N/A,y,y,n,n,,,,y
+Estimation of dusk time F-region electron density vertical profiles using LSTM neural networks: A preliminary investigation,https://doi.org/10.1016/j.aiig.2023.12.001,AI in Geo,2023,no,None,,,,,,,,
+Improved frost forecast using machine learning methods,https://doi.org/10.1016/j.aiig.2023.10.001,AI in Geo,2023,no,None,,,,,,,,
+A new correlation for calculating wellhead oil flow rate using artificial neural network,https://doi.org/10.1016/j.aiig.2022.04.001,AI in Geo,2022,yes,N/A,y,y,n,n,,,,y
+A convolutional recurrent neural network for strong convective rainfall nowcasting using weather radar data in Southeastern Brazil,https://doi.org/10.1016/j.aiig.2022.06.001,AI in Geo,2022,no,None,,,,,,,,
+Integrating the artificial intelligence and hybrid machine learning algorithms for improving the accuracy of spatial prediction of landslide hazards in Kurseong Himalayan Region,https://doi.org/10.1016/j.aiig.2022.06.002,AI in Geo,2022,no,None,,,,,,,,
+Ensemble hybrid machine learning methods for gully erosion susceptibility mapping: K-fold cross validation approach,https://doi.org/10.1016/j.aiig.2022.07.001,AI in Geo,2022,no,None,,,,,,,,
+PolarCAP – A deep learning approach for first motion polarity classification of earthquake waveforms,https://doi.org/10.1016/j.aiig.2022.08.001,AI in Geo,2022,no,None,,,,,,,,
+Synthetic shear sonic log generation utilizing hybrid machine learning techniques,https://doi.org/10.1016/j.aiig.2022.09.001,AI in Geo,2022,no,None,,,,,,,,
+Artificial intelligence-based anomaly detection of the Assen iron deposit in South Africa using remote sensing data from the Landsat-8 Operational Land Imager,https://doi.org/10.1016/j.aiig.2022.10.001,AI in Geo,2022,no,None,,,,,,,,
+Advanced geochemical exploration knowledge using machine learning: Prediction of unknown elemental concentrations and operational prioritization of Re-analysis campaigns,https://doi.org/10.1016/j.aiig.2022.10.003,AI in Geo,2022,no,None,,,,,,,,
+MLReal: Bridging the gap between training on synthetic data and real data applications in machine learning,https://doi.org/10.1016/j.aiig.2022.09.002,AI in Geo,2022,yes,Can be obtained from other entities,n,n,n,n,y,y,,
+A study on small magnitude seismic phase identification using 1D deep residual neural network,https://doi.org/10.1016/j.aiig.2022.10.002,AI in Geo,2022,yes,N/A,y,y,y,y,,,,y
+Attenuation of seismic migration smile artifacts with deep learning,https://doi.org/10.1016/j.aiig.2022.11.002,AI in Geo,2022,yes,N/A,y,y,n,n,,,,n
+Optimized feature selection assists lithofacies machine learning with sparse well log data combined with calculated attributes in a gradational fluvial sequence,https://doi.org/10.1016/j.aiig.2022.11.003,AI in Geo,2022,no,None,,,,,,,,
+ResGraphNet: GraphSAGE with embedded residual module for prediction of global monthly mean temperature,https://doi.org/10.1016/j.aiig.2022.11.001,AI in Geo,2022,no,None,,,,,,,,
+Geostatistical semi-supervised learning for spatial prediction,https://doi.org/10.1016/j.aiig.2022.12.002,AI in Geo,2022,no,None,,,,,,,,
+"Estimation of the effectiveness of multi-criteria decision analysis and machine learning approaches for agricultural land capability in Gangarampur Subdivision, Eastern India",https://doi.org/10.1016/j.aiig.2022.12.003,AI in Geo,2022,no,None,,,,,,,,
+Irregularly sampled seismic data interpolation via wavelet-based convolutional block attention deep learning,https://doi.org/10.1016/j.aiig.2022.12.001,AI in Geo,2022,no,None,,,,,,,,
+High resolution pre-stack seismic inversion using few-shot learning,https://doi.org/10.1016/j.aiig.2022.12.004,AI in Geo,2022,no,None,,,,,,,,
+Near-surface velocity estimation using shear-waves and deep-learning with a U-net trained on synthetic data,https://doi.org/10.1016/j.aiig.2023.01.001,AI in Geo,2022,no,None,,,,,,,,
+A study on geological structure prediction based on random forest method,https://doi.org/10.1016/j.aiig.2023.01.004,AI in Geo,2022,yes,None,y,y,y,y,,,,y
+Machine learning in petrophysics: Advantages and limitations,https://doi.org/10.1016/j.aiig.2022.11.004,AI in Geo,2022,no,None,,,,,,,,
+The benefits and dangers of using artificial intelligence in petrophysics,https://doi.org/10.1016/j.aiig.2021.04.001,AI in Geo,2021,no,None,,,,,,,,
+Wavefield solutions from machine learned functions constrained by the Helmholtz equation,https://doi.org/10.1016/j.aiig.2021.08.002,AI in Geo,2021,no,None,,,,,,,,
+Microleveling aerogeophysical data using deep convolutional network and MoG-RPCA,https://doi.org/10.1016/j.aiig.2021.08.003,AI in Geo,2021,no,None,,,,,,,,
+Capsule network-based approach for estimating grassland coverage using time series data from enhanced vegetation index,https://doi.org/10.1016/j.aiig.2021.08.001,AI in Geo,2021,no,None,,,,,,,,
+Near-surface velocity inversion from Rayleigh wave dispersion curves based on a differential evolution simulated annealing algorithm,https://doi.org/10.1016/j.aiig.2021.10.001,AI in Geo,2021,no,None,,,,,,,,
+The potential of self-supervised networks for random noise suppression in seismic data,https://doi.org/10.1016/j.aiig.2021.11.001,AI in Geo,2021,no,None,,,,,,,,
+Machine learning-based prediction of trace element concentrations using data from the Karoo large igneous province and its application in prospectivity mapping,https://doi.org/10.1016/j.aiig.2021.11.002,AI in Geo,2021,yes,N/A,y,y,n,n,,,,y
+Rapid identification of high-quality marine shale gas reservoirs based on the oversampling method and random forest algorithm,https://doi.org/10.1016/j.aiig.2021.12.001,AI in Geo,2021,no,None,,,,,,,,
+Classification random forest with exact conditioning for spatial prediction of categorical variables,https://doi.org/10.1016/j.aiig.2021.11.003,AI in Geo,2021,no,None,,,,,,,,
+Deep convolutional autoencoders as generic feature extractors in seismological applications,https://doi.org/10.1016/j.aiig.2021.12.002,AI in Geo,2021,no,None,,,,,,,,
+"Hydrocarbon detections using multi-attributes based quantum neural networks in a tight sandstone gas reservoir in the Sichuan Basin, China",https://doi.org/10.1016/j.aiig.2022.02.004,AI in Geo,2021,no,None,,,,,,,,
+Random forest for spatial prediction of censored response variables,https://doi.org/10.1016/j.aiig.2022.02.001,AI in Geo,2021,no,None,,,,,,,,
+"Towards a fully data-driven prospectivity mapping methodology: A case study of the Southeastern Churchill Province, Québec and Labrador",https://doi.org/10.1016/j.aiig.2022.02.002,AI in Geo,2021,yes,N/A,y,y,n,n,,,,y
+Enhancing lithofacies machine learning predictions with gamma-ray attributes for boreholes with limited diversity of recorded well logs,https://doi.org/10.1016/j.aiig.2022.02.007,AI in Geo,2021,no,None,,,,,,,,
+"Data-driven approaches for time series prediction of daily production in the Sulige tight gas field, China",https://doi.org/10.1016/j.aiig.2022.02.005,AI in Geo,2021,no,None,,,,,,,,
+Arriving at estimates of a rate and state fault friction model parameter using Bayesian inference and Markov chain Monte Carlo,https://doi.org/10.1016/j.aiig.2022.02.003,AI in Geo,2021,no,None,,,,,,,,
+"Site suitability for Aromatic Rice cultivation by integrating Geo-spatial and Machine learning algorithms in Kaliyaganj C.D. block, India",https://doi.org/10.1016/j.aiig.2022.03.001,AI in Geo,2021,no,None,,,,,,,,
+Unilateral Alignment: An interpretable machine learning method for geophysical logs calibration,https://doi.org/10.1016/j.aiig.2022.02.006,AI in Geo,2021,no,None,,,,,,,,
+Application of neural network to speed-up equilibrium calculations in compositional reservoir simulation,https://doi.org/10.1016/j.aiig.2022.03.004,AI in Geo,2021,no,None,,,,,,,,
+Flood susceptibility assessment using artificial neural networks in Indonesia,https://doi.org/10.1016/j.aiig.2022.03.002,AI in Geo,2021,no,None,,,,,,,,
+Sparse inversion-based seismic random noise attenuation via self-paced learning,https://doi.org/10.1016/j.aiig.2022.03.003,AI in Geo,2021,no,None,,,,,,,,
+Local earthquakes detection: A benchmark dataset of 3-component seismograms built on a global scale,https://doi.org/10.1016/j.aiig.2020.04.001,AI in Geo,2020,yes,N/A,y,y,n,n,,,,y
+Exact Conditioning of Regression Random Forest for Spatial Prediction,https://doi.org/10.1016/j.aiig.2021.01.001,AI in Geo,2020,no,None,,,,,,,,
+Seismic labeled data expansion using variational autoencoders,https://doi.org/10.1016/j.aiig.2020.12.002,AI in Geo,2020,no,None,,,,,,,,
+Automatic fault instance segmentation based on mask propagation neural network,https://doi.org/10.1016/j.aiig.2020.12.001,AI in Geo,2020,no,None,,,,,,,,
+ShakeDaDO: A data collection combining earthquake building damage and ShakeMap parameters for Italy,https://doi.org/10.1016/j.aiig.2021.01.002,AI in Geo,2020,yes,None,n,n,n,n,n,n,,n
+Reservoir evaluation using petrophysics informed machine learning: A case study,https://doi.org/10.1016/j.aiig.2024.100070,AI in Geo,2024,no,None,,,,,,,,
+"Forecast future disasters using hydro-meteorological datasets in the Yamuna river basin, Western Himalaya: Using Markov Chain and LSTM approaches",https://doi.org/10.1016/j.aiig.2024.100069,AI in Geo,2024,yes,None,n,n,n,n,y,y,,
+Robust high frequency seismic bandwidth extension with a deep neural network trained using synthetic data,https://doi.org/10.1016/j.aiig.2024.100071,AI in Geo,2024,yes,N/A,y,y,n,n,,,,y
+"A combined deep CNN-RNN network for rainfall-runoff modelling in Bardha Watershed, India",https://doi.org/10.1016/j.aiig.2024.100073,AI in Geo,2024,yes,None,n,n,n,n,y,y,,
+Reconstruction of lithofacies using a supervised Self-Organizing Map: Application in pseudo-wells based on a synthetic geologic cross-section,https://doi.org/10.1016/j.aiig.2024.100072,AI in Geo,2024,yes,None,n,n,n,n,y,y,,
+The role of artificial intelligence and IoT in prediction of earthquakes: Review,https://doi.org/10.1016/j.aiig.2024.100075,AI in Geo,2024,no,None,,,,,,,,
