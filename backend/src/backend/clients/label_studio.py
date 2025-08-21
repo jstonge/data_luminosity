@@ -15,6 +15,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import GenerationConfig, TextStreamer, pipeline
 # from unsloth import FastLanguageModel
 
+from pydantic import BaseModel, Field
+from outlines import Generator, from_transformers, Template
+
 from pymongo import MongoClient
 import pandas as pd
 import numpy as np
@@ -27,6 +30,23 @@ try:
     print(f"runs on CUDA: {is_cuda}")
 except:
     is_cuda = False
+
+# Pydantic models for structured generation
+class DataAvailabilityClassification(BaseModel):
+    """Classification of data availability statement"""
+    is_data_availability_statement: str = Field(
+        description="Whether the text contains a data availability statement",
+        pattern="^(yes|no|maybe)$"
+    )
+    confidence: float = Field(
+        description="Confidence score between 0 and 1",
+        ge=0.0,
+        le=1.0
+    )
+    reasoning: str = Field(
+        description="Brief explanation for the classification",
+        max_length=200
+    )
 
 chosen_journals = set(['Journal of Business Research','Technological Forecasting and Social Change',
                       'Journal of Business Ethics','Advanced Materials', 'Angewandte Chemie', 
@@ -42,25 +62,23 @@ chosen_journals = set(['Journal of Business Research','Technological Forecasting
 class LabelStudioClient:
     model = None
     tokenizer = None
-    model_id = None
+    model_path = None
 
-    # @classmethod
-    # def load_llama3(cls):
-    #     if cls.model is None and cls.tokenizer is None and is_cuda:
-    #         try:                
-    #             cls.model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+    @classmethod
+    def load_llama3(cls):
+        if cls.model is None and cls.tokenizer is None and is_cuda:
+            try:                
+                # run on the vacc
+                cls.model_path = "/gpfs1/llm/llama-3.2-hf/Meta-Llama-3.2-3B-Instruct"
 
-    #             cls.tokenizer = AutoTokenizer.from_pretrained(cls.model_id)
-
-    #             cls.model = AutoModelForCausalLM.from_pretrained(
-    #                 cls.model_id,
-    #                 torch_dtype=torch.float16,
-    #                 device_map = 'auto'
-    #             )
-    #         except ImportError:
-    #             cls.model = None
-    #             cls.tokenizer = None
-    #             raise ImportError("model and tokenizer not available") 
+                cls.model = from_transformers(
+                    AutoModelForCausalLM.from_pretrained(cls.model_path, device_map="auto"),
+                    AutoTokenizer.from_pretrained(cls.model_path)
+                )
+            except ImportError:
+                cls.model = None
+                cls.tokenizer = None
+                raise ImportError("model and tokenizer not available") 
 
     #! TODO: fix with TRL
     # @classmethod
@@ -224,61 +242,54 @@ class LabelStudioClient:
             print("project created")
             return json.loads(response.text)['id']
 
-    def run_llama3(self, annot: str, proj_id:int = 42, config: GenerationConfig = None) -> List[Union[str, int]]:
-        """run llama3 using few shot learning on the annotations for a given project""" 
+    def preannotate_with_llama3(self, annot: str, proj_id: int = 42) -> DataAvailabilityClassification:
+        """Use Llama3 with structured generation for data availability statement classification""" 
         self.load_llama3()
-        if self.model is not None and self.tokenizer is not None:
-            # set default config if none provided
-            if config is None:
-                generation_config = GenerationConfig.from_pretrained(self.model_id)
-                generation_config.max_new_tokens = 512
-                generation_config.temperature = 0.0001
-                generation_config.do_sample = True
-
-            streamer = TextStreamer(self.tokenizer, skip_prompt=True, skip_special_tokens=True)
-            stop_token_ids = [self.tokenizer.eos_token_id, self.tokenizer.convert_tokens_to_ids("<|eot_id|>")]
-
-            llm = pipeline(
-                "text-generation",
-                model=self.model,
-                tokenizer=self.tokenizer,
-                return_full_text=False,
-                generation_config=generation_config,
-                num_return_sequences=1,
-                eos_token_id=stop_token_ids,
-                streamer=streamer,
-            )
-
-            if proj_id == 42:
-                ex1 = """We thank A. Sachraida, C. Gould and P. J. Kelly for providing us with the experimental data and helpful comments, and S. Tomsovic for a critical discussion."""
-                ex2 = """River discharge data for the Tully River were obtained from the Queensland Bureau of Meteorology (http://www.bom.gov. au). No long-term in situ salinity data are available from King Reef; therefore, data from the Carton-Giese Simple Ocean Data Assimilation (SODA) reanalysis project were chosen as a longterm monthly resolution SSS dataset. This consists of a combination of observed and modeled data (Carton et al., 2000). Data were obtained from the box centered on 17.5°S (17.25°-17.75°) and 146°E (145.75°-146.25°). SODA version 1.4.2 extends from 1958 to 2001 and uses surface wind products from the European Center for Medium-Range Weather Forecasts 40-year reanalysis (ECMWF ERA 40), which may contain inaccuracies in tropical regions (Cahyarini et al., 2008). The most recent version of SODA (1.4.3) now uses wind data from the Quick-Scat scatterometer, thus providing more accurate data for the tropics (Cahyarini et al., 2008;Carton and Giese, 2008"""
-                ex3 = """The current results should be considered relative to a few study limitations. The CFS data did not specify the nature of proactive activities that patrol, DRT officers, or investigators were engaged in. Furthermore, although the coding of the ten call categories analyzed were informed by prior research (Wu & Lum, 2017), idiosyncrasies associated with the study departments' method of cataloging and recording call information did not always allow for direct comparisons to prior research on COVID-19's impact on police services. Similarly, measuring proactivity solely through self-initiated activities from CFS data is not a flawless indicator. Officers may engage in proactive work that is not captured in these **data** (Lum, Koper, et al., 2020). However, this method has been established as a reasonable way to distinguish proactivity from reactivity (Lum, Koper, et al., 2020;Wu & Lum, 2017;Zhang and Zhao, 2021)."""
-
-                return llm([{
-                    "role": "user",
-                    "content": cleandoc(f"""
-                        Text: {ex1}
-                        is_data_availability_statement: yes
-
-                        Text: {ex2}
-                        is_data_availability_statement: yes
-
-                        Text: {ex3}
-                        is_data_availability_statement: no
-
-                        Text: {annot}
-                        is_data_availability_statement: ?
-
-                        Give a one word response.
-                        """
-                    )}])
-            else:
-                print("Not implemented yet")
-                y_pred = None
-        
-            return y_pred
-        else:
+        if self.model is None or self.tokenizer is None:
             raise ImportError("llama3 not available")
+
+        if proj_id == 42:
+            # Create outlines model
+            model = models.transformers(self.model, self.tokenizer)
+
+            # Define the structured generation template
+            template = Template.from_string(
+                """You are an expert at analyzing scientific text for data availability statements.
+
+A data availability statement describes where research data can be found, accessed, or obtained. This includes:
+- References to data repositories or databases
+- Statements about data sharing policies  
+- Information about how to access the research data
+- Contact information for data requests
+
+# Examples
+
+TEXT: We thank A. Sachraida, C. Gould and P. J. Kelly for providing us with the experimental data and helpful comments, and S. Tomsovic for a critical discussion.
+RESULT: {"is_data_availability_statement": "yes", "confidence": 0.8, "reasoning": "Text mentions providing experimental data"}
+
+TEXT: River discharge data for the Tully River were obtained from the Queensland Bureau of Meteorology (http://www.bom.gov.au). Data were obtained from the box centered on 17.5°S and 146°E from the SODA reanalysis project.
+RESULT: {"is_data_availability_statement": "yes", "confidence": 0.9, "reasoning": "Text specifies data sources and locations where data can be obtained"}
+
+TEXT: The current results should be considered relative to a few study limitations. Officers may engage in proactive work that is not captured in these data.
+RESULT: {"is_data_availability_statement": "no", "confidence": 0.9, "reasoning": "Text mentions data in context of limitations, not data availability"}
+
+# Task
+
+Analyze the following text and determine if it contains a data availability statement.
+
+TEXT: {{ text }}
+RESULT: """)
+
+            # Create structured generator
+            generator = Generator(model, DataAvailabilityClassification)
+            
+            # Generate structured response
+            prompt = template(text=annot)
+            result = generator(prompt, max_new_tokens=400, temperature=0.0, do_sample=False)
+            
+            return result
+        else:
+            raise NotImplementedError("Only project 42 (data availability) is implemented")
     
     #! TODO: fix with TRL
     # def run_llama3_finetuned(self, annot: str, proj_id:int = 42) -> List[Union[str, int]]:
@@ -427,77 +438,12 @@ class LabelStudioClient:
         subset_d['corpusid_unique'] = subset_d.corpusid.astype(str) + '_' + subset_d.par_id.astype(str)
         
         return subset_d
-    
-    def dispatch_annots(self, proj_id:int = 42, N:int = 200, preannotate: str = 'llama3'):
-        """dispatch N annotations to each (active) annotator."""
-        annots_to_dispatch = self.more_annotations(proj_id=proj_id)
 
-        for email, annot_id in self.active_annotators.items():
-            print(f"dispatching to {email}")
-            next_corpus_id = np.random.choice(annots_to_dispatch.corpusid_unique, N)
-            next_sample_df = annots_to_dispatch[annots_to_dispatch.corpusid_unique.isin(next_corpus_id)]
-
-            data2dump = []
-            for i, row in next_sample_df.iterrows():
-                
-                data_dict = {
-                    "data": {
-                        'corpusid': row['corpusid'],
-                        'corpusid_unique': row['corpusid_unique'],
-                        'par_id': row['par_id'],
-                        'wc': row['wc'],
-                        'text': row['text']
-                    },
-                    # we add empty annotations as a way to assign the task to the annotator. Not ideal.
-                    "annotations": [{ 
-                        "ground_truth": False,
-                        'completed_by' : {
-                            "id": annot_id,
-                            "first_name": "",
-                            "last_name": "",
-                            "avatar": None,
-                            "email": email,
-                            "initials": email[:2]
-                        },
-                        'result': [{
-                            'value': {'choices': []},
-                            'id': "",
-                            "from_name": 'sentiment',
-                            'to_name': 'text',
-                            'type': 'choices',
-                            'origin': 'manual',
-                        }]
-                        }]
-                }
-
-                if preannotate:
-                    # slow because we don't batch. Makes it simpler.
-                    y_pred = self.run_llama3(row['text'], proj_id=proj_id)
-                    y_pred = y_pred[0]['generated_text'].lower()
-                    # y_pred = self.run_llama3_finetuned(row['text'], proj_id=self.proj_id)
-
-                    data_dict['predictions'] = [{
-                        "model_version": "llama3-8B-few-shots",
-                        "score": 0.5, # could be ammended to have uncertainty score from llama3
-                        "result": [
-                            {
-                                "id": i,
-                                "from_name": 'sentiment',
-                                'to_name': 'text',
-                                "type": "labels",
-                                'value': { 'choices': [y_pred] }
-                            }
-                        ]
-                    }]
-                
-                data2dump.append(data_dict)     
-            
-            self.post_LS(proj_id, data_dict)
-
-        annots_to_dispatch = annots_to_dispatch[~annots_to_dispatch.corpusid_unique.isin(next_corpus_id)]
-
-def format_data_dict_LS(row, annot_id, email):
-    return {
+    def create_annotation_task(self, row, annot_id: int, email: str, proj_id: int = 42, preannotate: str = None) -> tuple:
+        """Create a complete annotation task with optional pre-annotation"""
+        
+        # Base task structure
+        data_dict = {
             "data": {
                 'corpusid': row['corpusid'],
                 'corpusid_unique': row['corpusid_unique'],
@@ -505,11 +451,9 @@ def format_data_dict_LS(row, annot_id, email):
                 'wc': row['wc'],
                 'text': row['text']
             },
-
-            # we add empty annotations as a way to assign the task to the annotator. Not ideal.
             "annotations": [{ 
                 "ground_truth": False,
-                'completed_by' : {
+                'completed_by': {
                     "id": annot_id,
                     "first_name": "",
                     "last_name": "",
@@ -525,21 +469,31 @@ def format_data_dict_LS(row, annot_id, email):
                     'type': 'choices',
                     'origin': 'manual',
                 }]
-                }]
+            }]
         }
-
-def format_prediction_LS(y_pred:str, model_version:str) -> List:
-    return [{
-            "model_version": model_version,
-            "score": 0.5, # could be ammended to have uncertainty score from llama3
-            "result": [
-                {
-                    "id": i,
-                    "from_name": 'sentiment',
-                    'to_name': 'text',
-                    "type": "labels",
-                    'value': { 'choices': [y_pred] }
-                }
-            ]
-        }]
-
+        
+        # Add pre-annotation if requested
+        if preannotate == 'llama3':
+            try:
+                classification = self.preannotate_with_llama3(row['text'], proj_id=proj_id)
+                
+                data_dict['predictions'] = [{
+                    "model_version": "llama3-8B-structured",
+                    "score": classification.confidence,
+                    "result": [{
+                        "id": row.name if hasattr(row, 'name') else 0,
+                        "from_name": 'sentiment',
+                        'to_name': 'text',
+                        "type": "labels",
+                        'value': {'choices': [classification.is_data_availability_statement]}
+                    }]
+                }]
+                
+                return data_dict, True  # Return tuple: (task, prediction_generated)
+                
+            except Exception as e:
+                print(f"Pre-annotation failed for task: {e}")
+                return data_dict, False
+        
+        return data_dict, False
+    

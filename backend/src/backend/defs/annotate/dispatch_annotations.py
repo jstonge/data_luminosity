@@ -44,9 +44,10 @@ def dispatch_annotations(ls_client: LabelStudioResource) -> dg.MaterializeResult
         
         # Dispatch to each active annotator
         for email, annot_id in ls_client.active_annotators.items():
-            context.log.info(f"Dispatching {N} annotations to {email}")
+            print(f"Dispatching {N} annotations to {email}")
             
-            # Sample N unique annotations for this annotator
+            #!TODO We could add more sampling strategies, e.g. uncertainty sampling, based on prob. tokens. 
+            # Sample N unique annotations for this annotator (random sampling)
             import numpy as np
             next_corpus_id = np.random.choice(annots_to_dispatch.corpusid_unique, N, replace=False)
             next_sample_df = annots_to_dispatch[annots_to_dispatch.corpusid_unique.isin(next_corpus_id)]
@@ -55,56 +56,17 @@ def dispatch_annotations(ls_client: LabelStudioResource) -> dg.MaterializeResult
             predictions_count = 0
             
             for i, row in next_sample_df.iterrows():
-                data_dict = {
-                    "data": {
-                        'corpusid': row['corpusid'],
-                        'corpusid_unique': row['corpusid_unique'],
-                        'par_id': row['par_id'],
-                        'wc': row['wc'],
-                        'text': row['text']
-                    },
-                    # Add empty annotations to assign task to annotator
-                    "annotations": [{ 
-                        "ground_truth": False,
-                        'completed_by': {
-                            "id": annot_id,
-                            "first_name": "",
-                            "last_name": "",
-                            "avatar": None,
-                            "email": email,
-                            "initials": email[:2]
-                        },
-                        'result': [{
-                            'value': {'choices': []},
-                            'id': "",
-                            "from_name": 'sentiment',
-                            'to_name': 'text',
-                            'type': 'choices',
-                            'origin': 'manual',
-                        }]
-                    }]
-                }
-
-                # Add pre-annotation if requested
-                if preannotate == 'llama3':
-                    try:
-                        y_pred = ls_client.run_llama3(row['text'], proj_id=proj_id)
-                        y_pred_text = y_pred[0]['generated_text'].lower()
-                        
-                        data_dict['predictions'] = [{
-                            "model_version": "llama3-8B-few-shots",
-                            "score": 0.5,
-                            "result": [{
-                                "id": i,
-                                "from_name": 'sentiment',
-                                'to_name': 'text',
-                                "type": "labels",
-                                'value': {'choices': [y_pred_text]}
-                            }]
-                        }]
-                        predictions_count += 1
-                    except Exception as e:
-                        context.log.warning(f"Pre-annotation failed for text {i}: {e}")
+                # Create annotation task with optional pre-annotation
+                data_dict, prediction_generated = ls_client.create_annotation_task(
+                    row=row, 
+                    annot_id=annot_id, 
+                    email=email, 
+                    proj_id=proj_id, 
+                    preannotate=preannotate
+                )
+                
+                if prediction_generated:
+                    predictions_count += 1
                 
                 data2dump.append(data_dict)
             
