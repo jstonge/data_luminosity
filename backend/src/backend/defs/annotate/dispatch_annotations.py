@@ -6,15 +6,15 @@ with optional pre-annotation using Llama3.
 """
 
 import dagster as dg
-from backend.clients.label_studio import LabelStudioClient
+from backend.defs.resources import LabelStudioResource
 
 
 @dg.asset(
     kinds={"label_studio"}, 
-    key=["target", "main", "dispatch_annotations"],
-    deps=["s2orc_dark_data"]
+    deps=["s2orc_dark_data"],
+    group_name="annotate"
 )
-def dispatch_annotations(context: dg.AssetExecutionContext) -> dg.MaterializeResult:
+def dispatch_annotations(ls_client: LabelStudioResource) -> dg.MaterializeResult:
     """
     Dispatch data availability annotation tasks to Label Studio annotators.
     
@@ -33,15 +33,10 @@ def dispatch_annotations(context: dg.AssetExecutionContext) -> dg.MaterializeRes
     preannotate = 'llama3'
     
     # Initialize Label Studio client
-    ls_client = LabelStudioClient()
     ls_client.LS_TOK = '8ecf272719351405d5c1dee84c97a9c304a9e96e'
-    
-    context.log.info(f"Dispatching annotations for project {proj_id}")
-    context.log.info(f"Active annotators: {list(ls_client.active_annotators.keys())}")
     
     try:
         # Get new annotations to dispatch
-        context.log.info("Getting new annotations from MongoDB...")
         annots_to_dispatch = ls_client.more_annotations(proj_id=proj_id)
         
         total_dispatched = 0
@@ -121,9 +116,9 @@ def dispatch_annotations(context: dg.AssetExecutionContext) -> dg.MaterializeRes
                     "predictions_generated": predictions_count
                 }
                 total_dispatched += len(data2dump)
-                context.log.info(f"Successfully dispatched {len(data2dump)} annotations to {email}")
+                print(f"Successfully dispatched {len(data2dump)} annotations to {email}")
             except Exception as e:
-                context.log.error(f"Failed to dispatch annotations to {email}: {e}")
+                print(f"Failed to dispatch annotations to {email}: {e}")
                 dispatch_results[email] = {"error": str(e)}
             
             # Remove dispatched annotations from pool
@@ -142,7 +137,7 @@ def dispatch_annotations(context: dg.AssetExecutionContext) -> dg.MaterializeRes
         )
         
     except Exception as e:
-        context.log.error(f"Annotation dispatch failed: {e}")
+        print(f"Annotation dispatch failed: {e}")
         return dg.MaterializeResult(
             metadata={
                 "project_id": proj_id,

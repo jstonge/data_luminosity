@@ -17,9 +17,9 @@ from datetime import datetime
 
 
 @dg.asset(
-    kinds={"ml"}, 
-    key=["target", "ml", "fine_tuned_model"],
-    deps=["training_dataset"]
+    kinds={"huggingface"}, 
+    deps=["training_dataset"],
+    group_name="fit"
 )
 def fine_tuned_model(context: dg.AssetExecutionContext) -> dg.MaterializeResult:
     """

@@ -6,23 +6,16 @@ Scrapes Google Scholar's top venues by field and combines them into a unified da
 
 import pandas as pd
 import dagster as dg
-import duckdb
-import filelock
+from dagster_duckdb import DuckDBResource
 
 
-def create_table_from_df(duckdb_path: str, table_name: str, df: pd.DataFrame):
-    """Create DuckDB table from pandas DataFrame with file lock."""
-    lock_path = f"{duckdb_path}.lock"
-    with filelock.FileLock(lock_path):
-        conn = duckdb.connect(duckdb_path)
-        try:
-            conn.execute(f"create or replace table {table_name} as select * from df")
-        finally:
-            conn.close()
 
 
-@dg.asset(kinds={"duckdb"}, key=["target", "main", "gscholar_venues"])
-def gscholar_venues() -> dg.MaterializeResult:
+@dg.asset(
+        kinds={"duckdb"}, 
+        group_name="ingestion"
+)
+def gscholar_venues(duckdb: DuckDBResource) -> dg.MaterializeResult:
     """Scrape Google Scholar top venues by academic field"""
     
     # Define field categories and their URLs
@@ -65,7 +58,8 @@ def gscholar_venues() -> dg.MaterializeResult:
             'h5_median': combined_data.iloc[:, 2] if combined_data.shape[1] > 2 else None   # Third column is h5-median
         })
         
-        create_table_from_df("/tmp/data_luminosity.duckdb", "main.gscholar_venues", df_simple)
+        with duckdb.get_connection() as conn:
+            conn.execute("create or replace table main.gscholar_venues as select * from df_simple")
         
         # Calculate metadata
         total_venues = len(df_simple)
@@ -91,7 +85,8 @@ def gscholar_venues() -> dg.MaterializeResult:
             'h5_median': []
         })
         
-        create_table_from_df("/tmp/data_luminosity.duckdb", "main.gscholar_venues", df_simple)
+        with duckdb.get_connection() as conn:
+            conn.execute("create or replace table main.gscholar_venues as select * from df_simple")
         
         return dg.MaterializeResult(
             metadata={

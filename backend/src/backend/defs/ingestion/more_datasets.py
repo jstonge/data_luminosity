@@ -1,40 +1,17 @@
 import pandas as pd
 import dagster as dg
-import duckdb
-import filelock
+from dagster_duckdb import DuckDBResource
 
 
-def serialize_duckdb_query(duckdb_path: str, sql: str):
-    """Execute SQL statement with file lock to guarantee cross-process concurrency."""
-    lock_path = f"{duckdb_path}.lock"
-    with filelock.FileLock(lock_path):
-        conn = duckdb.connect(duckdb_path)
-        try:
-            return conn.execute(sql)
-        finally:
-            conn.close()
-
-
-def create_table_from_df(duckdb_path: str, table_name: str, df: pd.DataFrame):
-    """Create DuckDB table from pandas DataFrame with file lock."""
-    lock_path = f"{duckdb_path}.lock"
-    with filelock.FileLock(lock_path):
-        conn = duckdb.connect(duckdb_path)
-        try:
-            conn.execute(f"create or replace table {table_name} as select * from df")
-        finally:
-            conn.close()
-
-
-@dg.asset(kinds={"duckdb"}, key=["target", "main", "federer2018"], group_name="literature_review")
-def federer2018() -> dg.MaterializeResult:
+@dg.asset(kinds={"duckdb"}, group_name="literature_review")
+def federer_data_2018(duckdb: DuckDBResource) -> dg.MaterializeResult:
     df = pd.read_csv(
         'src/backend/defs/data/lit_review/federer_data_2018/final_full_coded_set.csv', encoding='ISO-8859-1'
         )
     
     # Simple schema
     df_simple = pd.DataFrame({
-        'source': 'federer2018',
+        'source': 'federer_data_2018',
         'text': df['data_statement'],
         'venue': None,
         'publication_year': pd.to_datetime(df['publication_date.x']).dt.year,
@@ -52,7 +29,8 @@ def federer2018() -> dg.MaterializeResult:
         }).fillna('other')
     })
     
-    create_table_from_df("/tmp/data_luminosity.duckdb", "main.federer2018", df_simple)
+    with duckdb.get_connection() as conn:
+        conn.execute("create or replace table main.federer_data_2018 as select * from df_simple")
     
     # Calculate metadata
     total_rows = len(df_simple)
@@ -69,14 +47,13 @@ def federer2018() -> dg.MaterializeResult:
         }
     )
 
-
-@dg.asset(kinds={"duckdb"}, key=["target", "main", "grant2018"], group_name="literature_review")
-def grant2018() -> dg.MaterializeResult:
+@dg.asset(kinds={"duckdb"}, group_name="literature_review")
+def grant_impact_2018(duckdb: DuckDBResource) -> dg.MaterializeResult:
     df = pd.read_excel('src/backend/defs/data/lit_review/grant_impact_2018/NatureDataAvailabilityStatementsdataset2018.xlsx')
     
     # Simple schema
     df_simple = pd.DataFrame({
-        'source': 'grant2018',
+        'source': 'grant_impact_2018',
         'text': df['Data availability statement text'],
         'venue': df['Journal title'],
         'publication_year': None,
@@ -89,7 +66,8 @@ def grant2018() -> dg.MaterializeResult:
         }).fillna('other')
     })
     
-    create_table_from_df("/tmp/data_luminosity.duckdb", "main.grant2018", df_simple)
+    with duckdb.get_connection() as conn:
+        conn.execute("create or replace table main.grant_impact_2018 as select * from df_simple")
     
     # Calculate metadata
     total_rows = len(df_simple)
@@ -106,9 +84,8 @@ def grant2018() -> dg.MaterializeResult:
         }
     )
 
-
-@dg.asset(kinds={"duckdb"}, key=["target", "main", "jones_observed_2025"], group_name="literature_review")
-def jones_observed_2025() -> dg.MaterializeResult:
+@dg.asset(kinds={"duckdb"}, group_name="literature_review")
+def jones_observed_2025(duckdb: DuckDBResource) -> dg.MaterializeResult:
     csv_files = [
         'src/backend/defs/data/lit_review/jones_observed_2025/ASDC_AIES.csv',
         'src/backend/defs/data/lit_review/jones_observed_2025/ASDC_AIJ.csv',
@@ -139,7 +116,8 @@ def jones_observed_2025() -> dg.MaterializeResult:
         }).fillna('other')
     })
     
-    create_table_from_df("/tmp/data_luminosity.duckdb", "main.jones_observed_2025", df_simple)
+    with duckdb.get_connection() as conn:
+        conn.execute("create or replace table main.jones_observed_2025 as select * from df_simple")
     
     # Calculate metadata
     total_rows = len(df_simple)
@@ -156,9 +134,8 @@ def jones_observed_2025() -> dg.MaterializeResult:
         }
     )
 
-
-@dg.asset(kinds={"duckdb"}, key=["target", "main", "mcguinness_descriptive_2021"], group_name="literature_review")
-def mcguinness_descriptive_2021() -> dg.MaterializeResult:
+@dg.asset(kinds={"duckdb"}, group_name="literature_review")
+def mcguinness_descriptive_2021(duckdb: DuckDBResource) -> dg.MaterializeResult:
     df = pd.read_csv('src/backend/defs/data/lit_review/mcguinness_descriptive_2021/data-avail-published.csv', encoding='ISO-8859-1')
     
     # Simple schema
@@ -178,7 +155,8 @@ def mcguinness_descriptive_2021() -> dg.MaterializeResult:
         )
     })
     
-    create_table_from_df("/tmp/data_luminosity.duckdb", "main.mcguinness_descriptive_2021", df_simple)
+    with duckdb.get_connection() as conn:
+        conn.execute("create or replace table main.mcguinness_descriptive_2021 as select * from df_simple")
     
     # Calculate metadata
     total_rows = len(df_simple)
@@ -195,9 +173,8 @@ def mcguinness_descriptive_2021() -> dg.MaterializeResult:
         }
     )
 
-
-@dg.asset(kinds={"duckdb"}, key=["target", "main", "karcher_replication_2025"], group_name="literature_review")
-def karcher_replication_2025() -> dg.MaterializeResult:
+@dg.asset(kinds={"duckdb"}, group_name="literature_review")
+def karcher_replication_2025(duckdb: DuckDBResource) -> dg.MaterializeResult:
     df = pd.read_csv('src/backend/defs/data/lit_review/karcher_replication_2025/dataverse_files/data/raw/plos_fully_coded.csv')
     
     # Simple schema
@@ -216,7 +193,8 @@ def karcher_replication_2025() -> dg.MaterializeResult:
         )
     })
     
-    create_table_from_df("/tmp/data_luminosity.duckdb", "main.karcher_replication_2025", df_simple)
+    with duckdb.get_connection() as conn:
+        conn.execute("create or replace table main.karcher_replication_2025 as select * from df_simple")
     
     # Calculate metadata
     total_rows = len(df_simple)

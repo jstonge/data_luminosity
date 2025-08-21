@@ -70,9 +70,9 @@ def find_similar_indices(similarity_matrix, threshold):
 
 
 @dg.asset(
-    kinds={"ml"}, 
-    key=["target", "ml", "deduplicated_annotations"],
-    deps=["combined_annotations"]
+    kinds={"python"}, 
+    deps=["combined_annotations"],
+    group_name="transform"
 )
 def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.MaterializeResult:
     """
@@ -88,9 +88,9 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
     embedding_model_name = "all-MiniLM-L6-v2"  # Fast, good quality embeddings
     batch_size = 32
     
-    context.log.info(f"Semantic deduplication: {'enabled' if enable_semantic_dedup else 'disabled'}")
-    context.log.info(f"Similarity threshold: {similarity_threshold}")
-    context.log.info(f"Embedding model: {embedding_model_name}")
+    print(f"Semantic deduplication: {'enabled' if enable_semantic_dedup else 'disabled'}")
+    print(f"Similarity threshold: {similarity_threshold}")
+    print(f"Embedding model: {embedding_model_name}")
     
     # Load data from combined_annotations
     query = """
@@ -119,10 +119,10 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
     df = pd.DataFrame(annotations_data, columns=['text', 'has_data_statement', 'statement_category', 'source'])
     original_count = len(df)
     
-    context.log.info(f"Loaded {original_count} annotations for deduplication")
+    print(f"Loaded {original_count} annotations for deduplication")
     
     # Clean data first
-    context.log.info("Cleaning annotation data...")
+    print("Cleaning annotation data...")
     
     # Map to binary sentiment (yes/no)
     df['sentiment'] = df['has_data_statement'].map({'yes': 'yes', 'no': 'no'})
@@ -133,39 +133,39 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
     df = df[~df['sentiment'].str.contains('uncertain', na=False)]
     
     cleaned_count = len(df)
-    context.log.info(f"Cleaned data: {original_count} -> {cleaned_count} texts")
+    print(f"Cleaned data: {original_count} -> {cleaned_count} texts")
     
     # Step 1: Remove exact duplicates
     df = df.drop_duplicates(subset='text')
     exact_dedup_count = len(df)
     exact_removed = cleaned_count - exact_dedup_count
     
-    context.log.info(f"Removed {exact_removed} exact duplicate texts")
+    print(f"Removed {exact_removed} exact duplicate texts")
     
     # Step 2: Semantic deduplication using embeddings
     semantic_removed = 0
     semantic_dedup_success = False
     
     if enable_semantic_dedup and exact_dedup_count > 1:
-        context.log.info(f"Starting semantic deduplication with threshold {similarity_threshold}...")
+        print(f"Starting semantic deduplication with threshold {similarity_threshold}...")
         
         try:
             # Load embedding model
             embedding_model = SentenceTransformer(embedding_model_name)
-            context.log.info(f"Loaded embedding model: {embedding_model_name}")
+            print(f"Loaded embedding model: {embedding_model_name}")
             
             # Get texts for embedding
             texts = df['text'].tolist()
             
-            context.log.info(f"Computing embeddings for {len(texts)} texts...")
+            print(f"Computing embeddings for {len(texts)} texts...")
             # Compute embeddings in batches
             embeddings = compute_similarity_batches(texts, embedding_model, batch_size)
             
-            context.log.info("Computing similarity matrix...")
+            print("Computing similarity matrix...")
             # Compute similarity matrix
             similarity_matrix = cosine_similarity(embeddings)
             
-            context.log.info("Finding similar texts to remove...")
+            print("Finding similar texts to remove...")
             # Find indices to remove
             indices_to_remove = find_similar_indices(similarity_matrix, similarity_threshold)
             
@@ -173,9 +173,9 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
             if indices_to_remove:
                 df = df.iloc[~df.index.isin(indices_to_remove)].reset_index(drop=True)
                 semantic_removed = len(indices_to_remove)
-                context.log.info(f"Removed {semantic_removed} semantically similar texts")
+                print(f"Removed {semantic_removed} semantically similar texts")
             else:
-                context.log.info("No semantically similar texts found to remove")
+                print("No semantically similar texts found to remove")
             
             semantic_dedup_success = True
             
@@ -184,14 +184,14 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
             semantic_removed = 0
             semantic_dedup_success = False
     elif not enable_semantic_dedup:
-        context.log.info("Semantic deduplication disabled")
+        print("Semantic deduplication disabled")
     else:
-        context.log.info("Too few texts for semantic deduplication")
+        print("Too few texts for semantic deduplication")
     
     final_count = len(df)
     total_removed = original_count - final_count
     
-    context.log.info(f"Deduplication complete: {original_count} -> {final_count} texts ({total_removed} removed total)")
+    print(f"Deduplication complete: {original_count} -> {final_count} texts ({total_removed} removed total)")
     
     # Save deduplicated data to DuckDB
     create_table_from_df("/tmp/data_luminosity.duckdb", "main.deduplicated_annotations", df)

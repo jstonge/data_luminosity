@@ -68,9 +68,9 @@ def get_chat_template(model_name="llama3.2"):
 
 
 @dg.asset(
-    kinds={"ml"}, 
-    key=["target", "ml", "training_dataset"],
-    deps=["deduplicated_annotations"]
+    kinds={"python"}, 
+    deps=["deduplicated_annotations"],
+    group_name="transform"
 )
 def training_dataset(context: dg.AssetExecutionContext) -> dg.MaterializeResult:
     """

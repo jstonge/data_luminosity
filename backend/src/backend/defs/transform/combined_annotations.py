@@ -7,9 +7,8 @@ external literature review datasets to create a unified training dataset.
 
 import pandas as pd
 import dagster as dg
-import duckdb
-import filelock
-from backend.clients.label_studio import LabelStudioClient
+from dagster_duckdb import DuckDBResource
+from backend.defs.resources import LabelStudioResource
 
 
 def _safe_get_choice(ann, default='unknown'):
@@ -33,41 +32,21 @@ def _safe_get_choice(ann, default='unknown'):
         return default
 
 
-def serialize_duckdb_query(duckdb_path: str, sql: str):
-    """Execute SQL statement with file lock to guarantee cross-process concurrency."""
-    lock_path = f"{duckdb_path}.lock"
-    with filelock.FileLock(lock_path):
-        conn = duckdb.connect(duckdb_path)
-        try:
-            result = conn.execute(sql)
-            # For SELECT queries, fetch the results before closing connection
-            if sql.strip().upper().startswith('SELECT'):
-                return result.fetchall()
-            return result
-        finally:
-            conn.close()
 
 
-def create_table_from_df(duckdb_path: str, table_name: str, df: pd.DataFrame):
-    """Create DuckDB table from pandas DataFrame with file lock."""
-    lock_path = f"{duckdb_path}.lock"
-    with filelock.FileLock(lock_path):
-        conn = duckdb.connect(duckdb_path)
-        try:
-            conn.execute(f"create or replace table {table_name} as select * from df")
-        finally:
-            conn.close()
-
-
-@dg.asset(kinds={"duckdb"}, key=["target", "main", "label_studio_annotations"], deps=["dispatch_annotations"])
-def label_studio_annotations() -> dg.MaterializeResult:
+@dg.asset(
+        kinds={"duckdb"}, 
+        deps=["dispatch_annotations"], 
+        group_name="transform"
+)
+def label_studio_annotations(duckdb: DuckDBResource, ls_client: LabelStudioResource) -> dg.MaterializeResult:
     """Get current Label Studio annotations and convert to simple schema"""
     # Get current Label Studio annotations
-    ls_client = LabelStudioClient()
-    ls_client.LS_TOK = '8ecf272719351405d5c1dee84c97a9c304a9e96e'
+    client = ls_client.get_client()
+    client.LS_TOK = '8ecf272719351405d5c1dee84c97a9c304a9e96e'
     
     # Get annotations from the Dark Data project (project ID 42 based on the code)
-    ls_annotations = ls_client.get_annotations_LS(proj_id=42, only_annots=True)
+    ls_annotations = client.get_annotations_LS(proj_id=42, only_annots=True)
     
     # Convert LS annotations to simple schema format
     ls_df_simple = pd.DataFrame({
@@ -87,7 +66,8 @@ def label_studio_annotations() -> dg.MaterializeResult:
         ]
     })
     
-    create_table_from_df("/tmp/data_luminosity.duckdb", "main.label_studio", ls_df_simple)
+    with duckdb.get_connection() as conn:
+        conn.execute("create or replace table main.label_studio as select * from ls_df_simple")
     
     # Calculate metadata
     total_rows = len(ls_df_simple)
@@ -108,24 +88,24 @@ def label_studio_annotations() -> dg.MaterializeResult:
 
 @dg.asset(
     kinds={"duckdb"}, 
-    key=["target", "main", "combined_annotations"],
     deps=[
-        "federer2018",
-        "grant2018", 
+        "federer_data_2018",
+        "grant_impact_2018", 
         "jones_observed_2025",
         "mcguinness_descriptive_2021",
         "karcher_replication_2025",
         "label_studio_annotations"
-    ]
+    ],
+    group_name="transform"   
 )
-def combined_annotations() -> dg.MaterializeResult:
+def combined_annotations(duckdb: DuckDBResource) -> dg.MaterializeResult:
     """Combine Label Studio annotations with literature review datasets"""
     query = """
         create or replace table main.combined_annotations as (
             -- Literature review datasets
-            select * from main.federer2018
+            select * from main.federer_data_2018
             union all
-            select * from main.grant2018
+            select * from main.grant_impact_2018
             union all 
             select * from main.jones_observed_2025
             union all
@@ -137,7 +117,8 @@ def combined_annotations() -> dg.MaterializeResult:
             select * from main.label_studio
         )
     """
-    serialize_duckdb_query("/tmp/data_luminosity.duckdb", query)
+    with duckdb.get_connection() as conn:
+        conn.execute(query)
     
     # Calculate metadata from combined table
     metadata_query = """
@@ -160,8 +141,9 @@ def combined_annotations() -> dg.MaterializeResult:
         from main.combined_annotations
     """
     
-    source_stats = serialize_duckdb_query("/tmp/data_luminosity.duckdb", metadata_query)
-    total_stats = serialize_duckdb_query("/tmp/data_luminosity.duckdb", total_query)[0]
+    with duckdb.get_connection() as conn:
+        source_stats = conn.execute(metadata_query).fetchall()
+        total_stats = conn.execute(total_query).fetchone()
     
     # Format metadata
     source_breakdown = {}

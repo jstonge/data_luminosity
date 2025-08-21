@@ -4,9 +4,7 @@ from typing import Optional
 
 from backend.clients.label_studio import LabelStudioClient
 
-database_resource = DuckDBResource(
-    database="/tmp/data_luminosity.duckdb"
-    )
+database_resource = DuckDBResource(database="/tmp/data_luminosity.duckdb")
 
 class LabelStudioResource(dg.ConfigurableResource):
     api_key: Optional[str] = None
@@ -20,7 +18,7 @@ def resources():
     return dg.Definitions(
         resources={
             "duckdb": database_resource,
-            "LS": LabelStudioClient()
+            "ls_client": LabelStudioClient()
         }
     )
 
