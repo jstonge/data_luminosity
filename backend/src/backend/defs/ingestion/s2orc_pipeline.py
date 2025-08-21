@@ -10,8 +10,8 @@ import json
 import spacy
 import dagster as dg
 from dagster_duckdb import DuckDBResource
+from backend.defs.resources import MongoDBResource
 from tqdm import tqdm
-from pymongo import MongoClient
 from pathlib import Path
 
 
@@ -86,15 +86,12 @@ def add_journals_via_issnl(db, metadata_venue, df_google):
     group_name="ingestion"
 )
 def works_oa_subset(
-    duckdb: DuckDBResource
+    duckdb: DuckDBResource, mongodb: MongoDBResource
 ) -> dg.MaterializeResult:
     """Filter works_oa collection to get venues of interest and papers with s2orc_parsed=True"""
     
     # MongoDB connection
-    pw = "password"  # TODO: Move to environment variable
-    uri = f"mongodb://cwward:{pw}@wranglerdb01a.uvm.edu:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
-    client = MongoClient(uri)
-    db = client['papersDB']
+    db = mongodb.get_database()
     
     # Load Google Scholar venues data from DuckDB
     venues_query = "SELECT venue as Publication, h5_index, h5_median FROM main.gscholar_venues"
@@ -155,7 +152,6 @@ def works_oa_subset(
         except Exception as e:
             print(f"Error storing works_oa_subset: {e}")
     
-    client.close()
     
     return dg.MaterializeResult(
         metadata={
@@ -172,21 +168,17 @@ def works_oa_subset(
     deps=["works_oa_subset"],
     group_name="ingestion"
 )
-def s2orc_dark_data() -> dg.MaterializeResult:
+def s2orc_dark_data(mongodb: MongoDBResource) -> dg.MaterializeResult:
     """Extract text paragraphs from S2ORC data based on filtered corpus IDs"""
     
     # MongoDB connection
-    pw = "password"  # TODO: Move to environment variable
-    uri = f"mongodb://cwward:{pw}@wranglerdb01a.uvm.edu:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
-    client = MongoClient(uri)
-    db = client['papersDB']
+    db = mongodb.get_database()
     
     # Load the filtered corpus IDs from works_oa_subset
     venue_corpus_data = list(db.works_oa_subset.find({}, {'venue': 1, 'corpusid': 1}))
     
     if not venue_corpus_data:
-        client.close()
-        return dg.MaterializeResult(
+            return dg.MaterializeResult(
             metadata={
                 "error": "No corpus IDs found in works_oa_subset collection",
                 "total_paragraphs": 0
@@ -263,7 +255,6 @@ def s2orc_dark_data() -> dg.MaterializeResult:
             
         venues_processed += 1
     
-    client.close()
     
     return dg.MaterializeResult(
         metadata={

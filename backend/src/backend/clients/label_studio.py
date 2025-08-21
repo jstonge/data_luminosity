@@ -3,7 +3,6 @@ LABEL STUDIO CLIENT
  - interact with our MONGODB
  - assisted LLM preannotations
 """
-import os
 import requests
 import json
 import gc
@@ -15,14 +14,13 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import GenerationConfig, TextStreamer, pipeline
 # from unsloth import FastLanguageModel
 
-from pydantic import BaseModel, Field
 from outlines import Generator, from_transformers, Template
 
-from pymongo import MongoClient
 import pandas as pd
 import numpy as np
 from inspect import cleandoc
 from tqdm import tqdm
+from typing import Literal
 
 try:
     import torch
@@ -30,23 +28,6 @@ try:
     print(f"runs on CUDA: {is_cuda}")
 except:
     is_cuda = False
-
-# Pydantic models for structured generation
-class DataAvailabilityClassification(BaseModel):
-    """Classification of data availability statement"""
-    is_data_availability_statement: str = Field(
-        description="Whether the text contains a data availability statement",
-        pattern="^(yes|no|maybe)$"
-    )
-    confidence: float = Field(
-        description="Confidence score between 0 and 1",
-        ge=0.0,
-        le=1.0
-    )
-    reasoning: str = Field(
-        description="Brief explanation for the classification",
-        max_length=200
-    )
 
 chosen_journals = set(['Journal of Business Research','Technological Forecasting and Social Change',
                       'Journal of Business Ethics','Advanced Materials', 'Angewandte Chemie', 
@@ -68,7 +49,7 @@ class LabelStudioClient:
     def load_llama3(cls):
         if cls.model is None and cls.tokenizer is None and is_cuda:
             try:                
-                # run on the vacc
+                # run on the VACC
                 cls.model_path = "/gpfs1/llm/llama-3.2-hf/Meta-Llama-3.2-3B-Instruct"
 
                 cls.model = from_transformers(
@@ -115,13 +96,19 @@ class LabelStudioClient:
         torch.cuda.empty_cache()
         gc.collect()
 
-    def __init__(self, client: MongoClient = None):
-        if client is None:
-            uri="mongodb://cwward:password@wranglerdb01a.uvm.edu:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
-            client = MongoClient(uri)
+    def __init__(self, api_token: str, mongodb_resource):
+        """
+        Initialize LabelStudioClient with MongoDB connection and API token.
         
-        self.LS_TOK = os.getenv('LS_TOK')
-        self.db = client['papersDB']
+        Args:
+            api_token: Label Studio API token (required)
+            mongodb_resource: MongoDBResource instance (required)
+        """
+        # Configure MongoDB connection
+        self.db = mongodb_resource.get_database()
+        
+        # Configure API token
+        self.LS_TOK = api_token
         self.cache = Path("./cache")
         self.is_cuda = is_cuda
         self.annotators = {'juniper.lovato@uvm.edu': 19456, 'achawla1@uvm.edu': 17284, 'CW': 23575, 'JZ': 23576, 'jonathan.st-onge@uvm.edu': 16904}
@@ -131,20 +118,14 @@ class LabelStudioClient:
         if self.cache.exists() == False:
             self.cache.mkdir()
 
-        # print('accessing project status...')
-        # project_status = self.is_project_exists('Dark-Data')
-        # code_proj_status = self.is_project_exists('Code-Statement')
+        print('accessing project status...')
+        project_status = self.is_project_exists('Dark-Data')
         
-        # if project_status is None:
-        #     self.proj_id = self.create_dark_data_project()
-        # else:
-        #     self.proj_id = project_status
+        if project_status is None:
+            self.proj_id = self.create_dark_data_project()
+        else:
+            self.proj_id = project_status
         
-        # if code_proj_status is None:
-        #     self.code_proj_id = self.create_code_project()
-        # else:
-        #     self.code_proj_id = code_proj_status
-
     # LABEL STUDIO HELPERS
 
     def get_annotations_LS(self, proj_id, only_annots=True):
@@ -188,8 +169,6 @@ class LabelStudioClient:
 
     def create_dark_data_project(self) -> int:
         """create dark data project"""
-        if self.is_dark_data_project_exists():
-            return "project already exists"
         
         project_config = """\
             {"title": "Dark-Data","label_config": "<View>\
@@ -212,26 +191,6 @@ class LabelStudioClient:
             print("project created")
             return json.loads(response.text)['id']
     
-    def create_code_project(self) -> int:
-        """create code project. Based on https://codalab.lisn.upsaclay.fr/competitions/16935"""
-        if self.is_project_exists('Code-Statement'):
-            return "project already exists"
-        
-        project_config = """\
-            {"title": "Code-Statement","label_config": "<View>\
-            <View>\
-            <Text name='text' value='$text'/>\
-            <Choices name='sentiment' toName='text'>\
-                <Choice value='usage'/>\
-                <Choice value='creation'/>\
-                <Choice value='mention'/>\
-                <Choice value='unclear'/>\
-                <Choice value='None'/>\
-            </Choices>\
-            </View>\
-            </View>"}
-            """
-    
         response = requests.post(f'https://cclabel.uvm.edu/projects', 
                          headers={'Content-Type': 'application/json', 'Authorization': f"Token {self.LS_TOK}"}, 
                          data=project_config, verify=False)
@@ -242,7 +201,7 @@ class LabelStudioClient:
             print("project created")
             return json.loads(response.text)['id']
 
-    def preannotate_with_llama3(self, annot: str, proj_id: int = 42) -> DataAvailabilityClassification:
+    def preannotate_with_llama3(self, annot: str, proj_id: int = 42):
         """Use Llama3 with structured generation for data availability statement classification""" 
         self.load_llama3()
         if self.model is None or self.tokenizer is None:
@@ -250,7 +209,7 @@ class LabelStudioClient:
 
         if proj_id == 42:
             # Create outlines model
-            model = models.transformers(self.model, self.tokenizer)
+            model = self.model
 
             # Define the structured generation template
             template = Template.from_string(
@@ -265,23 +224,24 @@ A data availability statement describes where research data can be found, access
 # Examples
 
 TEXT: We thank A. Sachraida, C. Gould and P. J. Kelly for providing us with the experimental data and helpful comments, and S. Tomsovic for a critical discussion.
-RESULT: {"is_data_availability_statement": "yes", "confidence": 0.8, "reasoning": "Text mentions providing experimental data"}
+RESULT: yes
 
 TEXT: River discharge data for the Tully River were obtained from the Queensland Bureau of Meteorology (http://www.bom.gov.au). Data were obtained from the box centered on 17.5°S and 146°E from the SODA reanalysis project.
-RESULT: {"is_data_availability_statement": "yes", "confidence": 0.9, "reasoning": "Text specifies data sources and locations where data can be obtained"}
+RESULT: yes
 
 TEXT: The current results should be considered relative to a few study limitations. Officers may engage in proactive work that is not captured in these data.
-RESULT: {"is_data_availability_statement": "no", "confidence": 0.9, "reasoning": "Text mentions data in context of limitations, not data availability"}
+RESULT: no
 
 # Task
 
 Analyze the following text and determine if it contains a data availability statement.
+Answer with "yes", "no", or "maybe".
 
 TEXT: {{ text }}
 RESULT: """)
 
             # Create structured generator
-            generator = Generator(model, DataAvailabilityClassification)
+            generator = Generator(model, Literal["yes", "no", "maybe"])
             
             # Generate structured response
             prompt = template(text=annot)
@@ -475,17 +435,16 @@ RESULT: """)
         # Add pre-annotation if requested
         if preannotate == 'llama3':
             try:
-                classification = self.preannotate_with_llama3(row['text'], proj_id=proj_id)
+                result = self.preannotate_with_llama3(row['text'], proj_id=proj_id)
                 
                 data_dict['predictions'] = [{
                     "model_version": "llama3-8B-structured",
-                    "score": classification.confidence,
                     "result": [{
                         "id": row.name if hasattr(row, 'name') else 0,
                         "from_name": 'sentiment',
                         'to_name': 'text',
                         "type": "labels",
-                        'value': {'choices': [classification.is_data_availability_statement]}
+                        'value': {'choices': [result]}
                     }]
                 }]
                 
