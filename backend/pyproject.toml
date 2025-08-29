@@ -15,6 +15,7 @@ dependencies = [
     "outlines>=1.2.3",
     "pandas>=2.3.1",
     "peft>=0.17.0",
+    "pip>=25.2",
     "pymongo>=4.14.1",
     "requests>=2.32.5",
     "sentence-transformers>=5.1.0",

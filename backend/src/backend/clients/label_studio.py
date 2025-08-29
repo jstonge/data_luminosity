@@ -42,15 +42,14 @@ chosen_journals = set(['Journal of Business Research','Technological Forecasting
 
 class LabelStudioClient:
     model = None
-    tokenizer = None
     model_path = None
 
     @classmethod
     def load_llama3(cls):
-        if cls.model is None and cls.tokenizer is None and is_cuda:
+        if cls.model is None and is_cuda:
             try:                
                 # run on the VACC
-                cls.model_path = "/gpfs1/llm/llama-3.2-hf/Meta-Llama-3.2-3B-Instruct"
+                cls.model_path = "/gpfs1/llm/llama-3.1-hf/Meta-Llama-3.1-8B-Instruct"
 
                 cls.model = from_transformers(
                     AutoModelForCausalLM.from_pretrained(cls.model_path, device_map="auto"),
@@ -58,8 +57,7 @@ class LabelStudioClient:
                 )
             except ImportError:
                 cls.model = None
-                cls.tokenizer = None
-                raise ImportError("model and tokenizer not available") 
+                raise ImportError("model is not available") 
 
     #! TODO: fix with TRL
     # @classmethod
@@ -87,9 +85,6 @@ class LabelStudioClient:
         if cls.model is not None:
             del cls.model
             cls.model = None
-        if cls.tokenizer is not None:
-            del cls.tokenizer
-            cls.tokenizer = None
         if cls.model_id is not None:
             del cls.model_id
             cls.model_id = None
@@ -204,7 +199,7 @@ class LabelStudioClient:
     def preannotate_with_llama3(self, annot: str, proj_id: int = 42):
         """Use Llama3 with structured generation for data availability statement classification""" 
         self.load_llama3()
-        if self.model is None or self.tokenizer is None:
+        if self.model is None:
             raise ImportError("llama3 not available")
 
         if proj_id == 42:
@@ -241,7 +236,7 @@ TEXT: {{ text }}
 RESULT: """)
 
             # Create structured generator
-            generator = Generator(model, Literal["yes", "no", "maybe"])
+            generator = Generator(model, Literal["yes", "no"])
             
             # Generate structured response
             prompt = template(text=annot)

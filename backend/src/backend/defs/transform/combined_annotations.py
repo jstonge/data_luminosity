@@ -89,11 +89,11 @@ def label_studio_annotations(duckdb: DuckDBResource, ls_client: LabelStudioResou
 @dg.asset(
     kinds={"duckdb"}, 
     deps=[
-        "federer_data_2018",
-        "grant_impact_2018", 
-        "jones_observed_2025",
-        "mcguinness_descriptive_2021",
-        "karcher_replication_2025",
+        # "federer_data_2018",  # Remove this - rely heavily on ML
+        "grant_impact_2018",           # Keep: Nature journals
+        # "jones_observed_2025", # Remove this - no DAS 
+        "mcguinness_descriptive_2021", # Keep: medicine focus
+        "karcher_replication_2025",    # Keep: "qualitative methods"
         "label_studio_annotations"
     ],
     group_name="transform"   
@@ -103,12 +103,12 @@ def combined_annotations(duckdb: DuckDBResource) -> dg.MaterializeResult:
     query = """
         create or replace table main.combined_annotations as (
             -- Literature review datasets
-            select * from main.federer_data_2018
-            union all
+            -- select * from main.federer_data_2018
+            -- union all
             select * from main.grant_impact_2018
             union all 
-            select * from main.jones_observed_2025
-            union all
+            -- select * from main.jones_observed_2025
+            -- union all
             select * from main.mcguinness_descriptive_2021
             union all
             select * from main.karcher_replication_2025

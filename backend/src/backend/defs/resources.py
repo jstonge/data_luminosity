@@ -2,20 +2,21 @@ from dagster_duckdb import DuckDBResource
 import dagster as dg
 from typing import Optional
 from pymongo import MongoClient
+import os
 
 from backend.clients.label_studio import LabelStudioClient
 
 # We use duckdb as our working space
-database_resource = DuckDBResource(database=dg.EnvVar("DUCKDB_PATH"))
+database_resource = DuckDBResource(database='~/data_luminosity.duckdb')
 
 class MongoDBResource(dg.ConfigurableResource):
     """MongoDB connection resource for papersDB"""
-    host: str = dg.EnvVar("MONGODB_HOST")
-    port: int = dg.EnvVar.int("MONGODB_PORT")
-    username: str = dg.EnvVar("MONGODB_USERNAME")
-    password: str = dg.EnvVar("MONGODB_PASSWORD")
-    database_name: str = dg.EnvVar("MONGODB_DATABASE")
-    auth_source: str = dg.EnvVar("MONGODB_AUTH_SOURCE")
+    host: str = 'wranglerdb01a.uvm.edu'
+    port: int = 27017
+    username: str = 'cwward'
+    password: str = os.environ.get("MONGODB_PASSWORD")
+    database_name: str = 'papersDB'
+    auth_source: str = 'admin'
     
     def get_client(self) -> MongoClient:
         """Get MongoDB client instance"""
@@ -29,7 +30,7 @@ class MongoDBResource(dg.ConfigurableResource):
 
 class LabelStudioResource(dg.ConfigurableResource):
     """Label Studio client resource with MongoDB dependency"""
-    api_token: str = dg.EnvVar("LS_TOK")
+    api_token: str = os.environ.get("LS_TOK")
     mongodb: dg.ResourceDependency[MongoDBResource]
     
     def get_client(self) -> LabelStudioClient:
