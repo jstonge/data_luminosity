@@ -31,9 +31,6 @@ def _safe_get_choice(ann, default='unknown'):
     except (IndexError, KeyError, TypeError):
         return default
 
-
-
-
 @dg.asset(
         kinds={"duckdb"}, 
         deps=["dispatch_annotations"], 
@@ -83,7 +80,6 @@ def label_studio_annotations(duckdb: DuckDBResource, ls_resource: LabelStudioRes
             "columns": list(ls_df_simple.columns)
         }
     )
-
 
 @dg.asset(
     kinds={"duckdb"}, 

@@ -91,7 +91,7 @@ class LabelStudioClient:
         torch.cuda.empty_cache()
         gc.collect()
 
-    def __init__(self, api_token: str, mongodb_resource):
+    def __init__(self, api_token: str, database):
         """
         Initialize LabelStudioClient with MongoDB connection and API token.
         
@@ -100,7 +100,7 @@ class LabelStudioClient:
             mongodb_resource: MongoDBResource instance (required)
         """
         # Configure MongoDB connection
-        self.db = mongodb_resource.get_database()
+        self.db = database
         
         # Configure API token
         self.LS_TOK = api_token

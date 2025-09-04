@@ -29,29 +29,38 @@ class LabelStudioResource(dg.ConfigurableResource):
     api_token: str = os.environ.get("LS_TOK")
     mongodb: dg.ResourceDependency[MongoDBResource]
     
+    @property
+    def database(self):
+        """Get database instance from MongoDB resource"""
+        return self.mongodb.get_database()
+    
     def get_client(self) -> LabelStudioClient:
         return LabelStudioClient(
             api_token=self.api_token,
-            mongodb_resource=self.mongodb
+            database=self.database  # Pass database instead of resource
         )
 
 class SemanticScholarResource(dg.ConfigurableResource):
-    """Semantic scholar client resource """
+    """Semantic scholar client resource"""
     api_key: str = os.environ.get("S2")
     
-    def get_client(self) -> LabelStudioClient:
+    def get_client(self) -> SemanticScholarClient:  # Fixed return type
         return SemanticScholarClient(
             api_key=self.api_key,
         )
-    
+
+# Create resource instances
+mongodb_resource = MongoDBResource()
+
 @dg.definitions  
 def resources():
     return dg.Definitions(
         resources={
             "duckdb": database_resource,
-            "mongodb": MongoDBResource(),
+            "mongodb": mongodb_resource,
             "s2_resource": SemanticScholarResource(),
-            "ls_resource": LabelStudioResource()
+            "ls_resource": LabelStudioResource(
+                mongodb=mongodb_resource  # This should pass the actual resource instance
+            )
         }
     )
-
