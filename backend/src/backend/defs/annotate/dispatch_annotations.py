@@ -14,7 +14,7 @@ from backend.defs.resources import LabelStudioResource
     deps=["s2orc_dark_data"],
     group_name="annotate"
 )
-def dispatch_annotations(ls_client: LabelStudioResource) -> dg.MaterializeResult:
+def dispatch_annotations(ls_resource: LabelStudioResource) -> dg.MaterializeResult:
     """
     Dispatch data availability annotation tasks to Label Studio annotators.
     
@@ -33,7 +33,7 @@ def dispatch_annotations(ls_client: LabelStudioResource) -> dg.MaterializeResult
     preannotate = 'llama3'
     
     # Initialize Label Studio client
-    ls_client.LS_TOK = '8ecf272719351405d5c1dee84c97a9c304a9e96e'
+    ls_client = ls_resource.get_client()
     
     try:
         # Get new annotations to dispatch

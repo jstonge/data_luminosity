@@ -1,9 +1,3 @@
-"""
-S2ORC dark data collection asset.
-
-Processes S2ORC scientific papers to extract text paragraphs containing specific keywords
-and loads them into MongoDB for annotation tasks.
-"""
 
 import pandas as pd
 import json

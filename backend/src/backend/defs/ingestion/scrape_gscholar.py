@@ -9,8 +9,6 @@ import dagster as dg
 from dagster_duckdb import DuckDBResource
 
 
-
-
 @dg.asset(
         kinds={"duckdb"}, 
         group_name="ingestion"
@@ -52,10 +50,10 @@ def gscholar_venues(duckdb: DuckDBResource) -> dg.MaterializeResult:
         # Create simple schema
         df_simple = pd.DataFrame({
             'source': 'gscholar_venues',
-            'venue': combined_data.iloc[:, 0],  # First column is typically the venue name
-            'field': combined_data['field'],
-            'h5_index': combined_data.iloc[:, 1] if combined_data.shape[1] > 1 else None,  # Second column is h5-index
-            'h5_median': combined_data.iloc[:, 2] if combined_data.shape[1] > 2 else None   # Third column is h5-median
+            'venue': combined_data.Publication,  # First column is typically the venue name
+            'field': combined_data.field,
+            'h5_index': combined_data['h5-index'],
+            'h5_median': combined_data['h5-median']
         })
         
         with duckdb.get_connection() as conn:

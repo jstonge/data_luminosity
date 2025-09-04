@@ -39,14 +39,13 @@ def _safe_get_choice(ann, default='unknown'):
         deps=["dispatch_annotations"], 
         group_name="transform"
 )
-def label_studio_annotations(duckdb: DuckDBResource, ls_client: LabelStudioResource) -> dg.MaterializeResult:
+def label_studio_annotations(duckdb: DuckDBResource, ls_resource: LabelStudioResource) -> dg.MaterializeResult:
     """Get current Label Studio annotations and convert to simple schema"""
     # Get current Label Studio annotations
-    client = ls_client.get_client()
-    client.LS_TOK = '8ecf272719351405d5c1dee84c97a9c304a9e96e'
+    ls_client = ls_resource.get_client()
     
     # Get annotations from the Dark Data project (project ID 42 based on the code)
-    ls_annotations = client.get_annotations_LS(proj_id=42, only_annots=True)
+    ls_annotations = ls_client.get_annotations_LS(proj_id=42, only_annots=True)
     
     # Convert LS annotations to simple schema format
     ls_df_simple = pd.DataFrame({
