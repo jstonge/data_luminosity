@@ -104,7 +104,7 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
         AND has_data_statement IS NOT NULL
     """
     
-    annotations_data = serialize_duckdb_query("/tmp/data_luminosity.duckdb", query)
+    annotations_data = serialize_duckdb_query(duckdb, query)
     
     if not annotations_data:
         context.log.warning("No annotation data found")
@@ -123,14 +123,12 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
     
     # Clean data first
     print("Cleaning annotation data...")
-    
-    # Map to binary sentiment (yes/no)
-    df['sentiment'] = df['has_data_statement'].map({'yes': 'yes', 'no': 'no'})
+
     
     # Remove maybe/uncertain cases for cleaner training data
-    df = df[df['sentiment'].notna()]
-    df = df[~df['sentiment'].str.contains('maybe', na=False)]
-    df = df[~df['sentiment'].str.contains('uncertain', na=False)]
+    df = df[df['has_data_statement'].notna()]
+    df = df[~df['has_data_statement'].str.contains('maybe', na=False)]
+    df = df[~df['has_data_statement'].str.contains('uncertain', na=False)]
     
     cleaned_count = len(df)
     print(f"Cleaned data: {original_count} -> {cleaned_count} texts")
@@ -195,10 +193,11 @@ def deduplicated_annotations(context: dg.AssetExecutionContext) -> dg.Materializ
     
     # Save deduplicated data to DuckDB
     create_table_from_df("/tmp/data_luminosity.duckdb", "main.deduplicated_annotations", df)
+    # conn.execute(f"create or replace table main.deduplicated_annotations as select * from df")
     
     # Calculate statistics
     source_distribution = df['source'].value_counts().to_dict()
-    sentiment_distribution = df['sentiment'].value_counts().to_dict()
+    sentiment_distribution = df['has_data_statement'].value_counts().to_dict()
     
     return dg.MaterializeResult(
         metadata={

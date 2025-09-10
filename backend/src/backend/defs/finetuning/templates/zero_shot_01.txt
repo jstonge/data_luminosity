@@ -1,0 +1,7 @@
+### Instruction:
+Is this text has a data availability statement or not.
+
+### Input:
+{{ text }}
+
+### Response
